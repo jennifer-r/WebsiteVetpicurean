@@ -1,9 +1,6 @@
 import { Fragment } from 'react'
+import React from "react"
 import './App.css'
-import logo from './assets/vetpic.png'
-import bear from './assets/bear.png'
-import rating from './assets/rating.png'
-import pp from './assets/pp.png'
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -19,6 +16,10 @@ import bgSupplement from './assets/bgsuplement.png'
 import care from './assets/care.png'
 import bgCare from './assets/bgcare.png'
 import jumpic from './assets/jumpic.png'
+
+import bear from './assets/bear.png'
+import rating from './assets/rating.png'
+import pp from './assets/pp.png'
 
 
 function App() {
@@ -53,6 +54,140 @@ function App() {
             </div>
           </Container>
         </Navbar>
+
+        {/* JUMBOTRON */}
+        <div className="container-fluid">
+          <div className="jumbotron text-center mt-4">
+            <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
+            <div className="d-flex title Raleway">
+              <img src={arrow} alt="" className='arrow'/>
+              <div className='subtitle'>FOR YOUR ANIMAL</div>
+              <img src={paw1} alt="" className='paw1'/>
+            </div>
+            <p className='Raleway '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
+
+            <div className="d-flex">
+              <div className="col-4">                
+                <div className="supplement" style={{height: '100px', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '28%', backgroundPosition: 'center'}}>
+                  <img src={supplement} alt=""/>
+                  {/* <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> */}
+                </div>
+                <div className="care">
+                  <img src={care} alt="" style={{ width: '30%', backgroundImage: `url(${bgCare})`, backgroundRepeat: 'no-repeat', backgroundSize: '100%' }}/>
+                </div>
+              </div>
+              <div className="col-8">
+                <div className="bg">
+                  <img src={jumbo} alt=""/>
+                </div>
+                <div className="pic" style={{zIndex: 2, top: '130px', left: 0, position: 'relative'}}>
+                  <img src={jumpic} alt="" style={{width: '47%'}}/>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        {/* TESTIMONIALS */}
+        <div class="card text-bg-white" style={{ marginTop: "200px", height: "500px" }}>
+          <img src={bear} class="card-img" alt="..." style={{ width: "80px", opacity: "0.3",backgroundRepeat: "repeat-x" }}/>
+          {/* <div style={{ backgroundImage: `url(${bear})` }}>hello</div> */}
+          <div class="card-img-overlay">
+
+            {/* BELUM GANTI FONT!!! */}
+            <h3 class="card-title text-center mb-5" style={{ font: "Hind Siliguri" }}>TESTIMONIALS</h3> 
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="col">
+                <div class="card rounded-4 h-100 p-4 ms-2" style={{ diplay: "flex", flexDirection: "column", backgroundColor: "#EDFFF0" }}>
+                  <div class="card-body">
+                    <img src={rating} class="card-img-top mt-0" alt="..." style={{ width:"80px" }}/>
+                    <p class="card-text mt-3">“Lorem ipsum odor amet, consectetuer adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia, interdum conubia sociosqu convallis. Etiam sollicitudin dapibus maximus,”</p>
+                    <div className='row mt-auto' style={{ marginTop: "auto" }}>
+                      <div className='col-md-2'>
+                        <img src={pp} class="card-img-top" alt="..." style={{ width:"50px" }}/>
+                      </div>
+                      <div className='col-md-10'>
+                        <p class="card-text mt-0 mb-0">Walter</p>
+                        <p class="card-text mt-0"><small class="text-body-secondary">Andi's Dog</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card rounded-4 h-100 p-4" style={{ backgroundColor: "#EDFFF0" }}>
+                  <div class="card-body">
+                    <img src={rating} class="card-img-top mt-0" alt="..." style={{ width:"80px" }}/>
+                    <p class="card-text mt-3">“Lorem ipsum odor amet, consectetuer adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia,”</p>
+                    <div className='row' style={{ position: "absolute", bottom: "40px" }}>
+                      <div className='col-md-2'>
+                        <img src={pp} class="card-img-top" alt="..." style={{ width:"50px" }}/>
+                      </div>
+                      <div className='col-md-10' style={{ position: "relative", left: "30px" }}>
+                        <p class="card-text mt-0 mb-0">Walter</p>
+                        <p class="card-text mt-0"><small class="text-body-secondary">Andi's Dog</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card rounded-4 h-100 p-4 me-2" style={{ backgroundColor: "#EDFFF0" }}>
+                  <div class="card-body">
+                    <img src={rating} class="card-img-top mt-0" alt="..." style={{ width:"80px" }}/>
+                    <p class="card-text mt-3">“Lorem ipsum odor amet, consectetuer adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia,”</p>
+                    <div className='row' style={{ position: "absolute", bottom: "40px" }}>
+                      <div className='col-md-2'>
+                        <img src={pp} class="card-img-top" alt="..." style={{ width:"50px" }}/>
+                      </div>
+                      <div className='col-md-10' style={{ position: "relative", left: "30px" }}>
+                        <p class="card-text mt-0 mb-0">Walter</p>
+                        <p class="card-text mt-0"><small class="text-body-secondary">Andi's Dog</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        {/* END TESTIMONIALS */}
       </Fragment>
     </>
   )
