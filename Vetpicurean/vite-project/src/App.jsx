@@ -61,15 +61,34 @@ function App() {
             </div>
             <p className='Raleway '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
 
-            <div className="d-flex">
-              <div className="col-4">                
-                <div className="supplement" style={{height: '100px', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '28%', backgroundPosition: 'center'}}>
+            <div className="d-flex align-items-center">
+              <div className="col-4">   
+                <div className="d-flex flex-column">
+                  <div className="">
+                    <div className="supplement align-content-center" style={{height: '160px', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: '45%'}}>
+                      <img src={supplement} alt="" style={{width: '30%'}}/>
+                      {/* <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> */}
+                    </div>
+                    <h5 className='Raleway'>SUPPLEMENT</h5>
+                  </div>
+                  
+                  <div className="">
+                    <div className="care align-content-center" style={{height: '160px', backgroundImage: `url(${bgCare})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: '45%'}}>
+                      <img src={care} alt="" style={{width: '30%'}}/>
+                      {/* <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> */}
+                    </div>
+                    <h5 className='Raleway'>HYGIENE CARE</h5>
+                  </div>
+                </div>  
+
+                {/* <div className="supplement" style={{height: '100px', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '28%', backgroundPosition: 'center'}}>
                   <img src={supplement} alt=""/>
-                  {/* <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> */}
+                  <!-- <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> -->
                 </div>
                 <div className="care">
                   <img src={care} alt="" style={{ width: '30%', backgroundImage: `url(${bgCare})`, backgroundRepeat: 'no-repeat', backgroundSize: '100%' }}/>
-                </div>
+                </div> */}
+
               </div>
               <div className="col-8">
                 <div className="bg">
