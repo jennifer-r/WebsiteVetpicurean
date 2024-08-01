@@ -1,5 +1,9 @@
 import { Fragment } from 'react'
 import './App.css'
+import logo from './assets/vetpic.png'
+import bear from './assets/bear.png'
+import rating from './assets/rating.png'
+import pp from './assets/pp.png'
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -49,71 +53,6 @@ function App() {
             </div>
           </Container>
         </Navbar>
-
-        {/* JUMBOTRON */}
-        <div className="container-fluid">
-          <div className="jumbotron text-center mt-4">
-            <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
-            <div className="d-flex title Raleway">
-              <img src={arrow} alt="" className='arrow'/>
-              <div className='subtitle'>FOR YOUR ANIMAL</div>
-              <img src={paw1} alt="" className='paw1'/>
-            </div>
-            <p className='Raleway '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
-
-            <div className="d-flex">
-              <div className="col-4">                
-                <div className="supplement" style={{height: '100px', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '28%', backgroundPosition: 'center'}}>
-                  <img src={supplement} alt=""/>
-                  {/* <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> */}
-                </div>
-                <div className="care">
-                  <img src={care} alt="" style={{ width: '30%', backgroundImage: `url(${bgCare})`, backgroundRepeat: 'no-repeat', backgroundSize: '100%' }}/>
-                </div>
-              </div>
-              <div className="col-8">
-                <div className="bg">
-                  <img src={jumbo} alt=""/>
-                </div>
-                <div className="pic" style={{zIndex: 2, top: '130px', left: 0, position: 'relative'}}>
-                  <img src={jumpic} alt="" style={{width: '47%'}}/>
-                </div>
-              </div>
-            </div>
-
-
-
-          </div>
-        </div>
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       </Fragment>
     </>
   )
