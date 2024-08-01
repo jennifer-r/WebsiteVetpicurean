@@ -12,6 +12,59 @@
   font-family: 'Raleway', cursive;
 }
 
+h1 {
+  font-size: 70px;
+  color: #397344;
+  font-weight: 900;
+  margin-bottom: 0;
+  letter-spacing: -1px;
+}
+
+.title {
+  font-size: 70px;
+  justify-content: center;
+  font-weight: 900;
+  color: #9EE07D;
+}
+
+.title img{
+  width: 5rem;
+  height: 5rem;
+}
+
+.title .arrow {
+  margin-top: 1.5rem;
+  transform: rotate(210deg);
+}
+
+.title .paw1 {
+  transform: rotate(10deg);
+}
+
+.subtitle {
+  margin: 0 5rem;
+  letter-spacing: -1px;
+}
+
+.jumbotron p {
+  font-size: 18px;
+  padding: 0 10rem;
+  color: gray;
+  font-weight: 500;
+}
+
+.supplement {
+  margin: 0 auto;
+}
+
+.bg {
+  z-index: 1;
+  position: absolute;
+}
+
+
+
+/* 
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -47,4 +100,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */

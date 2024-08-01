@@ -1,11 +1,21 @@
 import { Fragment } from 'react'
 import './App.css'
-import logo from './assets/vetpic.png'
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
+
+import logo from './assets/vetpic.png'
+import arrow from './assets/arrow.png'
+import paw1 from './assets/paw1.png'
+import jumbo from './assets/jumbo.png'
+import supplement from './assets/supplement.png'
+import bgSupplement from './assets/bgsuplement.png'
+import care from './assets/care.png'
+import bgCare from './assets/bgcare.png'
+import jumpic from './assets/jumpic.png'
+
 
 function App() {
 
@@ -41,6 +51,42 @@ function App() {
         </Navbar>
 
         {/* JUMBOTRON */}
+        <div className="container-fluid">
+          <div className="jumbotron text-center mt-4">
+            <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
+            <div className="d-flex title Raleway">
+              <img src={arrow} alt="" className='arrow'/>
+              <div className='subtitle'>FOR YOUR ANIMAL</div>
+              <img src={paw1} alt="" className='paw1'/>
+            </div>
+            <p className='Raleway '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
+
+            <div className="d-flex">
+              <div className="col-4">                
+                <div className="supplement" style={{height: '100px', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '28%', backgroundPosition: 'center'}}>
+                  <img src={supplement} alt=""/>
+                  {/* <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> */}
+                </div>
+                <div className="care">
+                  <img src={care} alt="" style={{ width: '30%', backgroundImage: `url(${bgCare})`, backgroundRepeat: 'no-repeat', backgroundSize: '100%' }}/>
+                </div>
+              </div>
+              <div className="col-8">
+                <div className="bg">
+                  <img src={jumbo} alt=""/>
+                </div>
+                <div className="pic" style={{zIndex: 2, top: '130px', left: 0, position: 'relative'}}>
+                  <img src={jumpic} alt="" style={{width: '47%'}}/>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+        
+        
 
 
 
