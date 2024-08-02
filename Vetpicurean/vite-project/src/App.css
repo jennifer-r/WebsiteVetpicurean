@@ -20,6 +20,15 @@ h1 {
   letter-spacing: -1px;
 }
 
+h2 {
+  font-size: 55px;
+  color: #397344;
+  font-weight: 900;
+  margin-bottom: 0;
+  letter-spacing: -1px;
+  font-family: 'Raleway', cursive;
+}
+
 .title {
   font-size: 70px;
   justify-content: center;
@@ -46,7 +55,7 @@ h1 {
   letter-spacing: -1px;
 }
 
-.jumbotron p {
+.jumbo p {
   font-size: 18px;
   padding: 0 10rem;
   color: gray;
@@ -90,6 +99,27 @@ h1 {
   width: 40%;
   margin-left: auto;
 }
+
+.about {
+  text-align: start;
+  padding-left: 5rem;
+}
+
+.about p, .about ul {
+  margin-top: 25px;
+  line-height: 2rem;
+  text-align: justify;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+
+ul {
+  list-style-image: url('./assets/check.png');
+  align-self: center;
+  font-weight: bold;
+}
+
+
 
 
 

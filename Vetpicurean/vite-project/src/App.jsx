@@ -1,6 +1,9 @@
 import { Fragment, useState } from 'react'
 import Home from './pages/Home'
 import About from './pages/About'
+import Tips from './pages/Tips'
+import Product from './pages/Product'
+import Contact from './pages/Contact'
 import './App.css'
 
 import Container from 'react-bootstrap/Container';
@@ -35,9 +38,9 @@ function App() {
                 <div className="align-items-center">
                   <span className='me-4' onClick={ () => {setRoute("home")}}>HOME</span>
                   <span className='me-4' onClick={ () => handleNavbarClick('about')}>ABOUT</span>
-                  <span className='me-4'>TIPS</span>
-                  <span className='me-4'>PRODUCT</span>
-                  <span className='me-4'>CONTACT</span>
+                  <span className='me-4' onClick={ () => handleNavbarClick('tips')}>TIPS</span>
+                  <span className='me-4' onClick={ () => handleNavbarClick('product')}>PRODUCT</span>
+                  <span className='me-4' onClick={ () => handleNavbarClick('contact')}>CONTACT</span>
                 </div>
               </Nav>
             </Navbar.Collapse>
@@ -54,6 +57,15 @@ function App() {
           }
           {
             route=="about" && <About/>
+          }
+          {
+            route=="tips" && <Tips/>
+          }
+          {
+            route=="product" && <Product/>
+          }
+          {
+            route=="contact" && <Contact/>
           }
         </div>
         

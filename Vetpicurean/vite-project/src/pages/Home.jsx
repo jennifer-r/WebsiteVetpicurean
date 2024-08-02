@@ -23,7 +23,7 @@ const Home = () => {
 
   return(
     <div className="container">
-      <div className="jumbotron text-center mt-4">
+      <div className="jumbotron jumbo text-center mt-4">
         <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
         <div className="d-flex title Raleway">
           <img src={arrow} alt="" className='arrow'/>
@@ -66,6 +66,7 @@ const Home = () => {
       </div>
       <img src={paw2} alt="" className='paw2'/>
 
+      {/* WHY CHOOSE US */}
       <div className="why align-items-center">
         <div className="d-flex align-items-center" style={{zIndex:2}}>
           <img src={bone1} alt="" className='bone1'/>
@@ -76,19 +77,20 @@ const Home = () => {
             <div className="d-flex">
               <div className="col-5 borders text-center">
                 <h1 className='Hind' style={{fontSize: '100px'}}>860 +</h1>
-                <h2 className='Raleway mb-0' style={{color: 'white', fontWeight: 'bold', fontSize: '50px'}}>CUSTOMERS</h2>
+                <h2 className='mb-0' style={{color: 'white', fontWeight: 'bold'}}>CUSTOMERS</h2>
               </div>
               <div className="col-7 desc" style={{paddingLeft: '6rem'}}>
-                <h1 className='Hind' style={{fontSize: '50px'}}>WHY CHOOSE US ?</h1>
-                <h4>Quality Guaranteed</h4>
-                <h4 style={{marginLeft: '10rem'}}>Secure Payment</h4>
-                <h4 style={{marginLeft: '20rem'}}>Fast Delivery</h4>
+                <h2>WHY CHOOSE US ?</h2>
+                <h4 style={{fontWeight: 'bold'}}>Quality Guaranteed</h4>
+                <h4 style={{marginLeft: '10rem', fontWeight: 'bold'}}>Secure Payment</h4>
+                <h4 style={{marginLeft: '20rem', fontWeight: 'bold'}}>Fast Delivery</h4>
               </div>
             </div>
           </Card.Body>
         </Card> 
       </div>
 
+      {/* TESTIMONIAL */}
       <div className="card text-bg-white" style={{ marginTop: "200px", height: "500px" }}>
         <img src={bear} className="card-img" alt="..." style={{ width: "80px", opacity: "0.3",backgroundRepeat: "repeat-x" }}/>
         {/* <div style={{ backgroundImage: `url(${bear})` }}>hello</div> */}
