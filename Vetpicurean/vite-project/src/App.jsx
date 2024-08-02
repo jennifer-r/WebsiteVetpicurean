@@ -1,11 +1,12 @@
 import { Fragment } from 'react'
-import React from "react"
 import './App.css'
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 
 import logo from './assets/vetpic.png'
 import arrow from './assets/arrow.png'
@@ -16,6 +17,9 @@ import bgSupplement from './assets/bgsuplement.png'
 import care from './assets/care.png'
 import bgCare from './assets/bgcare.png'
 import jumpic from './assets/jumpic.png'
+import paw2 from './assets/paw2.png'
+import bone1 from './assets/bone1.png'
+import asset from './assets/asset.png'
 
 import bear from './assets/bear.png'
 import rating from './assets/rating.png'
@@ -27,13 +31,10 @@ function App() {
   return (
     <>
       <Fragment>
-
         {/* NAVBAR */}
         <Navbar expand="lg">
           <Container fluid>
-            {/* <Navbar.Brand href="#home" > */}
-              <img src={logo} alt="" style={{width: "15%"}}/>
-            {/* </Navbar.Brand> */}
+            <img src={logo} alt="" style={{width: "15%"}}/>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll" className='justify-content-center Hind'>
               <Nav
@@ -56,7 +57,7 @@ function App() {
         </Navbar>
 
         {/* JUMBOTRON */}
-        <div className="container-fluid">
+        <div className="container">
           <div className="jumbotron text-center mt-4">
             <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
             <div className="d-flex title Raleway">
@@ -66,9 +67,9 @@ function App() {
             </div>
             <p className='Raleway '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
 
-            <div className="d-flex align-items-center">
-              <div className="col-4">   
-                <div className="d-flex flex-column">
+            <div className="">
+              <div className="d-flex">
+                <div className="col-4">   
                   <div className="">
                     <div className="supplement align-content-center" style={{height: '160px', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: '45%'}}>
                       <img src={supplement} alt="" style={{width: '30%'}}/>
@@ -76,7 +77,7 @@ function App() {
                     </div>
                     <h5 className='Raleway'>SUPPLEMENT</h5>
                   </div>
-                  
+                    
                   <div className="">
                     <div className="care align-content-center" style={{height: '160px', backgroundImage: `url(${bgCare})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: '45%'}}>
                       <img src={care} alt="" style={{width: '30%'}}/>
@@ -84,30 +85,51 @@ function App() {
                     </div>
                     <h5 className='Raleway'>HYGIENE CARE</h5>
                   </div>
-                </div>  
-
-                {/* <div className="supplement" style={{height: '100px', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '28%', backgroundPosition: 'center'}}>
-                  <img src={supplement} alt=""/>
-                  <!-- <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> -->
-                </div>
-                <div className="care">
-                  <img src={care} alt="" style={{ width: '30%', backgroundImage: `url(${bgCare})`, backgroundRepeat: 'no-repeat', backgroundSize: '100%' }}/>
-                </div> */}
-
-              </div>
-              <div className="col-8">
-                <div className="bg">
-                  <img src={jumbo} alt=""/>
-                </div>
-                <div className="pic" style={{zIndex: 2, top: '130px', left: 0, position: 'relative'}}>
-                  <img src={jumpic} alt="" style={{width: '47%'}}/>
+                  
+                  
+                </div>                  
+                <div className="col-8">
+                  {/* <div className="bg" style={{alignContent: 'center'}}> */}
+                    <img src={jumbo} className='bg' alt="" style={{width: '43%', justifyContent: 'center'}}/>
+                  {/* </div> */}
+                  {/* <div className="pic" style={{zIndex: 2, top: '80px', position: 'reative', marginLeft: '100px'}}> */}
+                    <img src={jumpic} alt="" style={{width: '47%', zIndex: 2, top: '80px', position: 'relative', marginLeft: '25%'}}/>
+                  {/* </div> */}
                 </div>
               </div>
             </div>
-
-
-
           </div>
+          <img src={paw2} alt="" className='paw2'/>
+        </div>
+
+        
+        
+        
+
+        {/* WHY CHOOSE US */}
+        <div className="why align-items-center">
+          
+          <div className="d-flex align-items-center" style={{zIndex:2}}>
+            <img src={bone1} alt="" className='bone1'/>
+            <img src={asset} alt="" className='asset'/>
+          </div>
+
+          <Card style={{height: '300px', backgroundColor: '#B1E697', borderColor: '#B1E697', zIndex: 1}}>
+            <Card.Body style={{alignContent: 'center'}}>
+              <div className="d-flex">
+                <div className="col-5 borders text-center">
+                  <h1 className='Hind' style={{fontSize: '100px'}}>860 +</h1>
+                  <h2 className='Raleway mb-0' style={{color: 'white', fontWeight: 'bold', fontSize: '50px'}}>CUSTOMERS</h2>
+                </div>
+                <div className="col-7 desc" style={{paddingLeft: '6rem'}}>
+                  <h1 className='Hind' style={{fontSize: '50px'}}>WHY CHOOSE US ?</h1>
+                  <h4>Quality Guaranteed</h4>
+                  <h4 style={{marginLeft: '10rem'}}>Secure Payment</h4>
+                  <h4 style={{marginLeft: '20rem'}}>Fast Delivery</h4>
+                </div>
+              </div>
+            </Card.Body>
+          </Card> 
         </div>
         
         
@@ -207,6 +229,7 @@ function App() {
           </div>
         </div>
         {/* END TESTIMONIALS */}
+        
       </Fragment>
     </>
   )
