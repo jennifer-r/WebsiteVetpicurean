@@ -1,7 +1,5 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem;
 }
 
 .Hind {
@@ -66,11 +64,6 @@ h2 {
   margin: 0 auto;
 }
 
-.bg {
-  z-index: 1;
-  position: absolute;
-}
-
 .paw2 {
   transform: rotate(56deg);
   margin-left: 10rem;
@@ -117,6 +110,35 @@ ul {
   list-style-image: url('./assets/check.png');
   align-self: center;
   font-weight: bold;
+}
+
+.caption {
+  align-self: center;
+  text-align: center;
+  border-color: #397344;
+  border-width: 2px;
+  border-style: solid;
+  width: 50%;
+}
+
+.article {
+  font-family: 'Hind Siliguri', cursive;
+  font-size: 35px;
+  color: #397344;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.link {
+  text-decoration: underline;
+  color: blue;
+  font-family: 'Raleway', cursive;
+  font-weight: 600;
+}
+
+.paw {
+  align-content: end;
+
 }
 
 
