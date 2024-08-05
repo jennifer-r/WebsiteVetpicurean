@@ -20,6 +20,38 @@ import bear from '../assets/bear.png'
 import rating from '../assets/rating.png'
 import pp from '../assets/pp.png'
 
+const testimonials = [
+  {
+    stars: 5,
+    text: "Lorem ipsum dolor amet, consectetur adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia, interdum conubia sociosqu convallis. Etiam sollicitudin dapibus maximus.",
+    author: "WALTER",
+    pet: "ANDI'S DOG"
+  },
+  {
+    stars: 5,
+    text: "Lorem ipsum dolor amet, consectetur adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia, interdum conubia sociosqu convallis. Etiam sollicitudin dapibus maximus.",
+    author: "WALTER",
+    pet: "ANDI'S DOG"
+  },
+  {
+    stars: 5,
+    text: "Lorem ipsum dolor amet, consectetur adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia, interdum conubia sociosqu convallis. Etiam sollicitudin dapibus maximus.",
+    author: "WALTER",
+    pet: "ANDI'S DOG"
+  }
+];
+
+const Testimonial = ({ stars, text, author, pet }) => (
+  <div className="testimonial">
+    <div className="stars">{'★'.repeat(stars)}</div>
+    <p>{text}</p>
+    <div className="author">
+      <p>{author}</p>
+      <p>{pet}</p>
+    </div>
+  </div>
+);
+
 const Home = () => {
 
   return (
@@ -109,68 +141,12 @@ const Home = () => {
 
 
         {/* TESTIMONIAL */}
-        <div className="card text-bg-white" style={{ marginTop: "200px", height: "500px" }}>
-          <img src={bear} className="card-img" alt="..." style={{ width: "80px", opacity: "0.3", backgroundRepeat: "repeat-x" }} />
-          {/* <div style={{ backgroundImage: `url(${bear})` }}>hello</div> */}
-          <div className="card-img-overlay">
-
-            {/* BELUM GANTI FONT!!! */}
-            <h3 className="card-title text-center mb-5" style={{ font: "Hind Siliguri" }}>TESTIMONIALS</h3>
-            <div className="row row-cols-1 row-cols-md-3 g-4">
-              <div className="col">
-                <div className="card rounded-4 h-100 p-4 ms-2" style={{ diplay: "flex", flexDirection: "column", backgroundColor: "#EDFFF0" }}>
-                  <div className="card-body">
-                    <img src={rating} className="card-img-top mt-0" alt="..." style={{ width: "80px" }} />
-                    <p className="card-text mt-3">“Lorem ipsum odor amet, consectetuer adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia, interdum conubia sociosqu convallis. Etiam sollicitudin dapibus maximus,”</p>
-                    <div className='row mt-auto' style={{ marginTop: "auto" }}>
-                      <div className='col-md-2'>
-                        <img src={pp} className="card-img-top" alt="..." style={{ width: "50px" }} />
-                      </div>
-                      <div className='col-md-10'>
-                        <p className="card-text mt-0 mb-0">Walter</p>
-                        <p className="card-text mt-0"><small className="text-body-secondary">Andi's Dog</small></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col">
-                <div className="card rounded-4 h-100 p-4" style={{ backgroundColor: "#EDFFF0" }}>
-                  <div className="card-body">
-                    <img src={rating} className="card-img-top mt-0" alt="..." style={{ width: "80px" }} />
-                    <p className="card-text mt-3">“Lorem ipsum odor amet, consectetuer adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia,”</p>
-                    <div className='row' style={{ position: "absolute", bottom: "40px" }}>
-                      <div className='col-md-2'>
-                        <img src={pp} className="card-img-top" alt="..." style={{ width: "50px" }} />
-                      </div>
-                      <div className='col-md-10' style={{ position: "relative", left: "30px" }}>
-                        <p className="card-text mt-0 mb-0">Walter</p>
-                        <p className="card-text mt-0"><small className="text-body-secondary">Andi's Dog</small></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col">
-                <div className="card rounded-4 h-100 p-4 me-2" style={{ backgroundColor: "#EDFFF0" }}>
-                  <div className="card-body">
-                    <img src={rating} className="card-img-top mt-0" alt="..." style={{ width: "80px" }} />
-                    <p className="card-text mt-3">“Lorem ipsum odor amet, consectetuer adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia,”</p>
-                    <div className='row' style={{ position: "absolute", bottom: "40px" }}>
-                      <div className='col-md-2'>
-                        <img src={pp} className="card-img-top" alt="..." style={{ width: "50px" }} />
-                      </div>
-                      <div className='col-md-10' style={{ position: "relative", left: "30px" }}>
-                        <p className="card-text mt-0 mb-0">Walter</p>
-                        <p className="card-text mt-0"><small className="text-body-secondary">Andi's Dog</small></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="testimonials-section">
+          <h2>TESTIMONIALS</h2>
+          <div className="testimonials">
+            {testimonials.map((testimonial, index) => (
+              <Testimonial key={index} {...testimonial} />
+            ))}
           </div>
         </div>
       </div>
