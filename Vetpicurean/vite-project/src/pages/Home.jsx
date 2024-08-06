@@ -151,16 +151,9 @@ const Home = () => {
           </div>
         </div>
 
-        {/* <div className="d-flex column"> */}
         <img src={paw2} style={{ marginTop:"150px", marginLeft:"100px", width:"60px", transform:"rotate(-20deg)" }} alt=""/>
 
-        {/* <div> */}
-          <img src={paw2} style={{ marginTop:"50px", marginLeft:"830px", width:"60px", transform:"rotate(30deg)" }} alt=""/>
-        {/* </div> */}
-        {/* </div> */}
-
-        {/* <img src={bone1} alt="" className='bone'/>
-        <img src={bone1} alt="" className='bone'/> */}
+        <img src={paw2} style={{ marginTop:"50px", marginLeft:"830px", width:"60px", transform:"rotate(30deg)" }} alt=""/>
 
         {/* CATEGORIES */}
         <div className='categories-container'>
