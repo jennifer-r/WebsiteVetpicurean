@@ -12,6 +12,8 @@ import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
 import loc from '../assets/loc.png'
 import email from '../assets/email.png'
+import arrow from '../assets/arrow.png'
+import paw1 from '../assets/paw1.png'
 
 const products = [
   { name: "[VITAMIN] Penambah Berat Badan Imun", image: product1 },
@@ -56,9 +58,21 @@ const Product = () => {
   return(
     <div className="overflow-hidden">
     <div className="container">
+    <div className="jumbotron jumbo text-center mt-4">
+      <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
+      <div className="d-flex title Raleway">
+        <img src={arrow} alt="" className='arrow' />
+        <div className='subtitle'>FOR YOUR ANIMAL</div>
+        <img src={paw1} alt="" className='paw1' />
+      </div>
+      <p className='Raleway '>
+        We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet&apos;s  health needs
+      </p>
+      </div>
       {/* CATEGORIES */}
       <div className='categories-container'>
-          <h2>PRODUCTS</h2>
+          <img src={paw2} style={{ marginTop:"50px", width:"60px" }} alt=""/>
+          <h2 style={{ marginTop:"90px" }}>PRODUCTS</h2>
           <div className="categories d-flex justify-content-between" style={{ marginTop:"50px" }}>
             <img src={bone1} style={{ height:"80px", transform:"rotate(30deg)", marginTop:"100px" }} alt=""/>
             <img src={petSupp} alt="" style={{ marginLeft:"100px" }}/>
