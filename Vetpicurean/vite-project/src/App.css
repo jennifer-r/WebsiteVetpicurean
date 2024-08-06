@@ -64,11 +64,16 @@ h2 {
   margin: 0 auto;
 }
 
+.why{
+  margin-top: 10%;
+}
+
 .paw2 {
-  transform: rotate(56deg);
+  transform: rotate(30deg);
   margin-left: 10rem;
   width: 6rem;
 }
+
 
 .borders {
   border-right-color: white;
@@ -84,18 +89,19 @@ h2 {
 }
 
 .bone1{
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
 }
 
 .asset {
-  width: 40%;
+  width: 60%;
   margin-left: auto;
 }
 
 .about {
   text-align: start;
   padding-left: 5rem;
+  margin-top: 10px;
 }
 
 .about p, .about ul {
@@ -118,7 +124,10 @@ ul {
   border-color: #397344;
   border-width: 2px;
   border-style: solid;
-  width: 50%;
+  width: 70%;
+  padding: 30px 0;
+  margin-left: 30%;
+  border-radius: 30px;
 }
 
 .article {
@@ -136,35 +145,45 @@ ul {
   font-weight: 600;
 }
 
-.paw {
-  align-content: end;
-
+.decor {
+  margin-top: 14%;
+  justify-content: center;
+  align-content: center;
 }
 
-/* TESTIMONIALS */
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+.paw {
+  float: right;
+  transform: rotate(30deg);
+  width: 5%;
+  margin-right: 20%;
+  margin-top: 5%;
+}
+
+.paww{
+  transform: rotate(-30deg);
+  width: 5rem;
+  margin-right: 10rem;
+}
+
+.bone {
+  width: 5rem;
+  margin-left: 10rem;
+  transform: rotate(-90deg);
 }
 
 .testimonials-section {
   background-image: url('./assets/bear.png');
   background-repeat: repeat;
-  background-size: 80px;
+  background-size: 82px;
   background-blend-mode: lighten;
-  padding: 50px 0;
+  padding: 50px 9rem;
   text-align: center;
-}
-
-.testimonials-section h2 {
-  color: #4CAF50;
-  margin-bottom: 40px;
-  font-size: 2.5em;
+  margin: 5% -150px;
 }
 
 .testimonials {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
 }
@@ -174,7 +193,7 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
+  max-width: 370px;
   text-align: left;
 }
 
@@ -192,45 +211,90 @@ body {
   font-weight: bold;
 }
 
-/* END TESTIMONIALS */
-
-
-
-
-/* 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.footer {
+  padding: 3% 9rem;
+  background-color: #B1E697;
+  height: 100%;
+  margin-right: -150px;
+  margin-left: -150px;
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.info {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.footer p, .footer label {
+  font-size: 17px;
+  margin-bottom: 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #397344;
 }
 
-.card {
-  padding: 2em;
+.footer h3 {
+  color: #397344;
+  font-weight: bold;
+  font-size: 30px;
 }
 
-.read-the-docs {
-  color: #888;
-} */
+.footer input {
+  height: 80%;
+  width: 100%;
+  padding: 15px;
+  border-color: #397344;
+  background-color: transparent;
+  border-radius: 50px;
+  color: #397344;
+  font-weight: bold;
+}
+
+.sub-paw {
+  transform: rotate(-50deg);
+  width: 30px;
+}
+
+.btn-paw {
+  background-color: #397344;
+  padding: 13px;
+  right: 105px;
+  border: none;
+}
+
+.more {
+  background-color: #4CAF50;
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.tips {
+  margin-top: 8%;
+}
+
+.cards {
+  border: black;
+  background-color: #EDFEEF;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+  max-width: 1200px;
+}
+
+.cards p{
+  font-size: 18px;
+  font-family: 'Raleway', cursive;
+  line-height: 2rem;
+  text-align: justify;
+}
+
+.cards h3 {
+  font-size: 40px;
+  color: #397344;
+  font-family: 'Raleway', cursive;
+  font-weight: 900;
+}

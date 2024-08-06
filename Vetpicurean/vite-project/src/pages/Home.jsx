@@ -15,10 +15,10 @@ import bone1 from '../assets/bone1.png'
 import asset from '../assets/asset.png'
 import cat from '../assets/cat.png'
 import product from '../assets/product.png'
-
-import bear from '../assets/bear.png'
-import rating from '../assets/rating.png'
-import pp from '../assets/pp.png'
+import logo from '../assets/vetpic.png'
+import tel from '../assets/telephone.png'
+import loc from '../assets/loc.png'
+import email from '../assets/email.png'
 
 const testimonials = [
   {
@@ -42,7 +42,7 @@ const testimonials = [
 ];
 
 const Testimonial = ({ stars, text, author, pet }) => (
-  <div className="testimonial">
+  <div className="testimonial Raleway">
     <div className="stars">{'★'.repeat(stars)}</div>
     <p>{text}</p>
     <div className="author">
@@ -74,15 +74,16 @@ const Home = () => {
               <div className="col-4 d-flex flex-column justify-content-around">
                 <div className="supplement align-content-center" style={{ height: '160px', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: '100%' }}>
                   <img src={supplement} alt="" style={{ width: '80%' }} />
-                  {/* <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> */}
                   <h5 className='Raleway'>SUPPLEMENT</h5>
                 </div>
 
                 <div className="care align-content-center" style={{ height: '160px', backgroundImage: `url(${bgCare})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: '45%' }}>
                   <img src={care} alt="" style={{ width: '30%' }} />
-                  {/* <img src={supplement} alt="" style={{ width: '24%', backgroundImage: `url(${bgSupplement})`, backgroundRepeat: 'no-repeat', backgroundSize: '105%'}}/> */}
                   <h5 className='Raleway'>HYGIENE CARE</h5>
                 </div>
+
+                <img src={paw2} alt="" className='paw2' />
+
               </div>
               <div className="col-8">
                 <img src={jumbo} alt="" style={{ width: '100%', justifyContent: 'center' }} />
@@ -90,7 +91,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <img src={paw2} alt="" className='paw2' />
 
         {/* WHY CHOOSE US */}
         <div className="why align-items-center container">
@@ -98,12 +98,12 @@ const Home = () => {
             <Card.Body style={{ alignContent: 'center' }}>
               <div className="d-flex">
                 <div className="col-5 borders text-center position-relative">
-                  <img src={bone1} alt="" className="bone1 position-absolute" style={{ top: "-150px", right: "0" }} />
+                  <img src={bone1} alt="" className="bone1 position-absolute" style={{ top: "-120px", right: "0" }} />
                   <h1 className='Hind' style={{ fontSize: '100px' }}>860 +</h1>
                   <h2 className='mb-0' style={{ color: 'white', fontWeight: 'bold' }}>CUSTOMERS</h2>
                 </div>
                 <div className="col-7 desc  position-relative" style={{ paddingLeft: '6rem' }}>
-                  <img src={asset} alt="" className='asset position-absolute' style={{ top: "-150px", right: "-100px" }} />
+                  <img src={asset} alt="" className='asset position-absolute' style={{ top: "-250px", right: "-200px" }} />
                   <h2>WHY CHOOSE US ?</h2>
                   <h4 style={{ fontWeight: 'bold' }}>Quality Guaranteed</h4>
                   <h4 style={{ marginLeft: '10rem', fontWeight: 'bold' }}>Secure Payment</h4>
@@ -113,41 +113,87 @@ const Home = () => {
             </Card.Body>
           </Card>
         </div>
-        <img src={paw1} alt="" className='paw' style={{ right: 0 }} />
+        <img src={paw1} alt="" className='paw'/>
+
 
         {/* SECTION */}
-        <div className="">
-          <div className="d-flex align-items-center">
-            <div className="col-6">
-              <div className="d-flex align-items-ceter">
-                <img src={cat} alt="" style={{ width: '50%' }} />
-                <div className="caption">
-                  <h3 className='article'>LEARN HOW TO CARE PET'S</h3>
-                  <p className='link'>More Details</p>
-                </div>
+        <div className="d-flex align-items-center" style={{marginTop: '15%'}}>
+          <div className="col-6">
+            <div className="d-flex align-items-ceter position-relative">
+              <img src={cat} alt="" style={{ width: '55%', position: 'absolute', top: '-200px' }} />
+              <div className="caption">
+                <h3 className='article'>LEARN HOW TO <br /> CARE PET'S</h3>
+                <p className='link mb-0'>More Details</p>
               </div>
             </div>
-            <div className="col-6">
-              <div className="d-flex">
-                <img src={product} alt="" style={{ width: '30%' }} />
-                <div className="caption">
-                  <h3 className='article'>BASIC NUTRITION CHUBBY GUMMY</h3>
-                  <p className='link'>Shop Now</p>
-                </div>
+          </div>
+          <div className="col-6">
+            <div className="d-flex align-items-ceter position-relative">
+              <img src={product} alt="" style={{ width: '30%', position: 'absolute', top: '-85px', left: '60px' }} />
+              <div className="caption" style={{marginLeft: '30%'}}>
+                <h3 className='article'>BASIC NUTRITION <br /> CHUBBY GUMMY</h3>
+                <p className='link mb-0'>Shop Now</p>
               </div>
             </div>
           </div>
         </div>
-
+        <div className="d-flex decor">
+          <img src={paw2} alt="" className='paww'/>
+          <img src={bone1} alt="" className='bone'/>
+        </div>
 
         {/* TESTIMONIAL */}
         <div className="testimonials-section">
-          <h2>TESTIMONIALS</h2>
+          <h2 className='mb-5'>TESTIMONIALS</h2>
           <div className="testimonials">
             {testimonials.map((testimonial, index) => (
               <Testimonial key={index} {...testimonial} />
             ))}
           </div>
+        </div>
+
+        {/* FOOTER */}
+        <div className="footer">
+          <div className="d-flex">
+            <div className="col-4 pe-5">
+              <img src={logo} alt=""  style={{ width: "50%" }} />
+              <div className="more-info">
+                <div className="d-flex align-items-center mt-3">
+                  <img src={tel} alt="" className='info'/>
+                  <p className='Hind'>081330077377 (dr.Yenni)</p>
+                </div>
+                <div className="d-flex align-items-center mt-3">
+                  <img src={email} alt="" className='info'/>
+                  <p className='Hind'>hello@vetpicurean.com</p>
+                </div>
+                <div className="d-flex align-items-center mt-3">
+                  <img src={loc} alt="" className='info'/>
+                  <p className='Hind'>Diamond Regency E7, Kelurahan Keputih, Kecamatan Sukolilo, Surabaya</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-4 ps-5">
+              <h3 className='mb-0 Raleway mt-4'>Quick Links</h3>
+              <p className='Hind mt-4'>About</p>
+              <p className='Hind mt-4'>Tips</p>
+              <p className='Hind mt-4'>Product</p>
+              <p className='Hind mt-4'>Testimonial</p>
+            </div>
+            <div className="col-4 ps-5">
+              <h3 className='mb-0 Raleway mt-4'>Subscribe</h3>
+              <div className="d-flex mt-4">
+                <input type="text" className="form-control position-relative Hind" placeholder='E-mail'/>
+                <button className='btn-paw position-absolute' style={{borderRadius: '50%'}}>
+                  <img src={paw2} alt="" className='sub-paw'/>
+                </button>
+              </div> 
+              <p className='mt-4'>Subscribe to more information</p>          
+            </div>
+          </div>
+
+          <hr />
+
+          <p className='mt-4 text-center'>@2024 vetpicurean | All Right Reserved</p>
         </div>
       </div>
     </div>
