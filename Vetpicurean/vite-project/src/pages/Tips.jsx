@@ -168,7 +168,6 @@ const Tips = () => {
           <div className="d-flex">
             <div className="col-4 pe-5">
               <img src={logo} alt=""  style={{ width: "50%" }} />
-              <div className="more-info">
                 <div className="d-flex align-items-center mt-3">
                   <img src={tel} alt="" className='info'/>
                     <p className='Hind'>081330077377 (dr.Yenni)</p>
@@ -181,7 +180,6 @@ const Tips = () => {
                   <img src={loc} alt="" className='info'/>
                   <p className='Hind'>Diamond Regency E7, Kelurahan Keputih, Kecamatan Sukolilo, Surabaya</p>
                 </div>
-              </div>
             </div>
             <div className="col-4 ps-5">
               <h3 className='mb-0 Raleway mt-4'>Quick Links</h3>

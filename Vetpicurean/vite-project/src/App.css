@@ -299,7 +299,7 @@ ul {
   font-weight: bold;
 }
 
-.tips {
+.tips, .contact {
   margin-top: 8%;
 }
 
@@ -325,3 +325,52 @@ ul {
   font-family: 'Raleway', cursive;
   font-weight: 900;
 }
+
+.more-info p {
+  font-size: 25px;
+  margin-bottom: 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #397344;
+}
+
+.info-contact {
+  width: 50px;
+  height: 50px;
+  margin-right: 4rem;
+}
+
+.titles input, .titles textarea {
+  border: #397344;
+  border-width: 1px;
+  border-radius: 20px;
+  border-style: solid;
+}
+
+.titles label {
+  font-size: 25px;
+  font-family: 'Hind Siliguri', cursive;
+  font-weight: bold;
+  color: #397344;
+}
+
+.contacts {
+  border: #B1E697;
+  border-width: 2px;
+  border-radius: 30px;
+  border-style: solid;
+  padding: 50px 60px;
+  width: 500px;
+}
+
+.contacts button {
+  background-color: #397344;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
