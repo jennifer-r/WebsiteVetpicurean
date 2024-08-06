@@ -19,6 +19,19 @@ import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
 import loc from '../assets/loc.png'
 import email from '../assets/email.png'
+import product1 from '../assets/product1.png'
+import product2 from '../assets/product2.png'
+import product3 from '../assets/product3.png'
+import petSupp from '../assets/petSupp.png'
+import petSkin from '../assets/petSkin.png'
+import arrowLeft from '../assets/arrowLeft.png'
+import arrowRight from '../assets/arrowRight.png'
+
+const products = [
+  { name: "[VITAMIN] Penambah Berat Badan Imun", image: product1 },
+  { name: "[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy", image: product2, specialOffer: true },
+  { name: "Chubby Balme Fungee Obat Jamur Gatal Kemerahan", image: product3 },
+]
 
 const testimonials = [
   {
@@ -137,6 +150,61 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        {/* <div className="d-flex column"> */}
+        <img src={paw2} style={{ marginTop:"150px", marginLeft:"100px", width:"60px", transform:"rotate(-20deg)" }} alt=""/>
+
+        {/* <div> */}
+          <img src={paw2} style={{ marginTop:"50px", marginLeft:"830px", width:"60px", transform:"rotate(30deg)" }} alt=""/>
+        {/* </div> */}
+        {/* </div> */}
+
+        {/* <img src={bone1} alt="" className='bone'/>
+        <img src={bone1} alt="" className='bone'/> */}
+
+        {/* CATEGORIES */}
+        <div className='categories-container'>
+          <h2>CATEGORIES</h2>
+          <div className="categories d-flex justify-content-between" style={{ marginTop:"50px" }}>
+            <img src={bone1} style={{ height:"80px", transform:"rotate(30deg)", marginTop:"100px" }} alt=""/>
+            <img src={petSupp} alt="" style={{ marginLeft:"100px" }}/>
+            <img src={petSkin} alt="" style={{ marginRight:"100px" }}/>
+            <img src={bone1} style={{ height:"80px", transform:"rotate(-10deg)" }}alt=""/>
+          </div>
+          <div className="products">
+                <div className="d-flex py-5 justify-content-center rounded-5" style={{ backgroundColor: '#B1E697' }}>
+                <img src={arrowLeft} alt="" style={{ height:"30px", marginTop:"190px", marginRight:"30px" }}/>
+                <div className="col-3">
+                  <div className="card h-100 border" style={{ borderRadius:"20px" }}>
+                    <img src={product1} className="card-img-top" style={{ borderRadius:"20px" }}alt="..."/>
+                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
+                      <h5 className="card-title">[VITAMIN] Penambah Berat Badan Imun</h5>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-3 ms-5 me-5">
+                  <div className="card h-100" style={{ borderRadius:"20px" }}>
+                    <img src={product2} className="card-img-top" style={{ borderRadius:"20px" }} alt="..."/>
+                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
+                      <h5 className="card-title">[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy</h5>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-3">
+                  <div className="card h-100" style={{ borderRadius:"20px" }}>
+                    <img src={product3} className="card-img-top" style={{ borderTopRightRadius:"20px", borderTopLeftRadius:"20px" }} alt="..."/>
+                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
+                      <h5 className="card-title">Chubby Balme Fungee Obat Jamur Gatal Kemerahan</h5>
+                    </div>
+                  </div>
+                </div>
+                <img src={arrowRight} alt="" style={{ height:"30px", marginTop:"190px", marginLeft:"30px" }}/>
+              </div>
+
+            </div>
+        </div>
+        {/* END CATEGORIES */}
+
         <div className="d-flex decor">
           <img src={paw2} alt="" className='paww'/>
           <img src={bone1} alt="" className='bone'/>
