@@ -106,7 +106,7 @@ const Tips = () => {
 
         {/* WHY CHOOSE US */}
         <div className="why align-items-center container">
-          <Card style={{ backgroundColor: '#B1E697', borderColor: '#B1E697', padding: "3rem 0px", zIndex: 1 }}>
+          <Card className='shadow' style={{ backgroundColor: '#B1E697', borderColor: '#B1E697', padding: "3rem 0px", zIndex: 1 }}>
             <Card.Body style={{ alignContent: 'center' }}>
               <div className="d-flex">
                 <div className="col-5 borders text-center position-relative">
