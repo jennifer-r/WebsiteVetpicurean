@@ -336,7 +336,7 @@ ul {
   width: 500px;
 }
 
-.contacts button {
+.send {
   background-color: #397344;
   width: 100%;
   padding: 10px;
@@ -345,5 +345,21 @@ ul {
   border: none;
   color: white;
   font-weight: bold;
+}
+
+.modal-title h3 {
+  font-size: 40px;
+  color: #397344;
+  font-family: 'Raleway', cursive;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.modals {
+  background-image: url('./assets/bg.png');
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  
 }
 
