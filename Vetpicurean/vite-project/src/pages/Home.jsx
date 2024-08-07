@@ -1,6 +1,12 @@
 // import { useState } from "react"
 import Card from 'react-bootstrap/Card';
+
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import '../App.css'
+
+import products from '../components/product';
 
 
 import arrow from '../assets/arrow.png'
@@ -19,19 +25,19 @@ import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
 import loc from '../assets/loc.png'
 import email from '../assets/email.png'
-import product1 from '../assets/product1.png'
-import product2 from '../assets/product2.png'
-import product3 from '../assets/product3.png'
+// import product1 from '../assets/product1.png'
+// import product2 from '../assets/product2.png'
+// import product3 from '../assets/product3.png'
 import petSupp from '../assets/petSupp.png'
 import petSkin from '../assets/petSkin.png'
-import arrowLeft from '../assets/arrowLeft.png'
-import arrowRight from '../assets/arrowRight.png'
+// import arrowLeft from '../assets/arrowLeft.png'
+// import arrowRight from '../assets/arrowRight.png'
 
-const products = [
-  { name: "[VITAMIN] Penambah Berat Badan Imun", image: product1 },
-  { name: "[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy", image: product2, specialOffer: true },
-  { name: "Chubby Balme Fungee Obat Jamur Gatal Kemerahan", image: product3 },
-]
+// const products = [
+//   { name: "[VITAMIN] Penambah Berat Badan Imun", image: product1 },
+//   { name: "[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy", image: product2, specialOffer: true },
+//   { name: "Chubby Balme Fungee Obat Jamur Gatal Kemerahan", image: product3 },
+// ]
 
 const testimonials = [
   {
@@ -66,6 +72,30 @@ const Testimonial = ({ stars, text, author, pet }) => (
 );
 
 const Home = () => {
+  const settings = {
+    dots: true,
+    speed: 1000,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    infinite: true,
+    autoplay: false,
+    autoplaySpeed: 1000,
+    // nextArrow: (
+    //   <div>
+    //     <div className="next-slick-arrow">
+    //         <svg xmlns="http://www.w3.org/2000/svg" stroke="black" height="24" viewBox="0 -960 960 960" width="24"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
+    //     </div>
+    //   </div>
+    // ),
+
+    // prevArrow: (
+    //   <div>
+    //     <div className="next-slick-arrow rotate-180">
+    //       <svg xmlns="http://www.w3.org/2000/svg" stroke="black" height="24" viewBox="0 -960 960 960" width="24"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
+    //     </div>
+    //   </div>
+    // ),
+  };
 
   return (
     <div className="overflow-hidden">
@@ -157,46 +187,26 @@ const Home = () => {
 
         {/* CATEGORIES */}
         <div className='categories-container'>
-          <h2>CATEGORIES</h2>
           <div className="categories d-flex justify-content-between" style={{ marginTop:"50px" }}>
             <img src={bone1} style={{ height:"80px", transform:"rotate(30deg)", marginTop:"100px" }} alt=""/>
-            <img src={petSupp} alt="" style={{ marginLeft:"100px" }}/>
-            <img src={petSkin} alt="" style={{ marginRight:"100px" }}/>
+            <h2>PRODUCTS</h2>
             <img src={bone1} style={{ height:"80px", transform:"rotate(-10deg)" }}alt=""/>
           </div>
-          <div className="products">
-                <div className="d-flex py-5 justify-content-center rounded-5" style={{ backgroundColor: '#B1E697' }}>
-                <img src={arrowLeft} alt="" style={{ height:"30px", marginTop:"190px", marginRight:"30px" }}/>
-                <div className="col-3">
-                  <div className="card h-100 border" style={{ borderRadius:"20px" }}>
-                    <img src={product1} className="card-img-top" style={{ borderRadius:"20px" }}alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">[VITAMIN] Penambah Berat Badan Imun</h5>
+          <div className="product shadow">
+            <Slider {...settings}>
+              {products.map((item) => (
+                <div key={item.id}>
+                  <div className="img-bodys">
+                    <img src={item.src} alt={item.alt} />
+                    <div className='title-product mb-4'>
+                      <p className='Raleway mb-0'>{item.title}</p>
                     </div>
                   </div>
                 </div>
-                <div className="col-3 ms-5 me-5">
-                  <div className="card h-100" style={{ borderRadius:"20px" }}>
-                    <img src={product2} className="card-img-top" style={{ borderRadius:"20px" }} alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-3">
-                  <div className="card h-100" style={{ borderRadius:"20px" }}>
-                    <img src={product3} className="card-img-top" style={{ borderTopRightRadius:"20px", borderTopLeftRadius:"20px" }} alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">Chubby Balme Fungee Obat Jamur Gatal Kemerahan</h5>
-                    </div>
-                  </div>
-                </div>
-                <img src={arrowRight} alt="" style={{ height:"30px", marginTop:"190px", marginLeft:"30px" }}/>
-              </div>
-
-            </div>
-        </div>
-        {/* END CATEGORIES */}
+              ))}
+            </Slider>
+          </div>
+        </div>    
 
         <div className="d-flex decor">
           <img src={paw2} alt="" className='paww'/>
