@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import Card from 'react-bootstrap/Card';
 
 import Slider from 'react-slick'
@@ -7,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 import '../App.css'
 
 import products from '../components/product';
-
 
 import arrow from '../assets/arrow.png'
 import paw1 from '../assets/paw1.png'
@@ -25,19 +23,6 @@ import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
 import loc from '../assets/loc.png'
 import email from '../assets/email.png'
-// import product1 from '../assets/product1.png'
-// import product2 from '../assets/product2.png'
-// import product3 from '../assets/product3.png'
-import petSupp from '../assets/petSupp.png'
-import petSkin from '../assets/petSkin.png'
-// import arrowLeft from '../assets/arrowLeft.png'
-// import arrowRight from '../assets/arrowRight.png'
-
-// const products = [
-//   { name: "[VITAMIN] Penambah Berat Badan Imun", image: product1 },
-//   { name: "[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy", image: product2, specialOffer: true },
-//   { name: "Chubby Balme Fungee Obat Jamur Gatal Kemerahan", image: product3 },
-// ]
 
 const testimonials = [
   {
@@ -80,21 +65,6 @@ const Home = () => {
     infinite: true,
     autoplay: false,
     autoplaySpeed: 1000,
-    // nextArrow: (
-    //   <div>
-    //     <div className="next-slick-arrow">
-    //         <svg xmlns="http://www.w3.org/2000/svg" stroke="black" height="24" viewBox="0 -960 960 960" width="24"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
-    //     </div>
-    //   </div>
-    // ),
-
-    // prevArrow: (
-    //   <div>
-    //     <div className="next-slick-arrow rotate-180">
-    //       <svg xmlns="http://www.w3.org/2000/svg" stroke="black" height="24" viewBox="0 -960 960 960" width="24"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
-    //     </div>
-    //   </div>
-    // ),
   };
 
   return (
@@ -137,7 +107,7 @@ const Home = () => {
 
         {/* WHY CHOOSE US */}
         <div className="why align-items-center container">
-          <Card className='shadow' style={{ backgroundColor: '#B1E697', borderColor: '#B1E697', padding: "3rem 0px", zIndex: 1 }}>
+          <Card className='shadow section-choose'>
             <Card.Body style={{ alignContent: 'center' }}>
               <div className="d-flex">
                 <div className="col-5 borders text-center position-relative">
@@ -181,14 +151,15 @@ const Home = () => {
           </div>
         </div>
 
-        <img src={paw2} style={{ marginTop:"150px", marginLeft:"100px", width:"60px", transform:"rotate(-20deg)" }} alt=""/>
-
-        <img src={paw2} style={{ marginTop:"50px", marginLeft:"830px", width:"60px", transform:"rotate(30deg)" }} alt=""/>
+        <div className="d-flex justify-content-center" style={{marginTop: '7rem', gap: '30%'}}>
+          <img src={paw2} style={{width:"60px", transform:"rotate(-20deg)"}} alt=""/>
+          <img src={paw2} style={{width:"60px", transform:"rotate(30deg)" }} alt=""/>
+        </div>
 
         {/* CATEGORIES */}
         <div className='categories-container'>
-          <div className="categories d-flex justify-content-between" style={{ marginTop:"50px" }}>
-            <img src={bone1} style={{ height:"80px", transform:"rotate(30deg)", marginTop:"100px" }} alt=""/>
+          <div className="categories d-flex justify-content-between">
+            <img src={bone1} style={{ height:"80px", transform:"rotate(30deg)"}} alt=""/>
             <h2>PRODUCTS</h2>
             <img src={bone1} style={{ height:"80px", transform:"rotate(-10deg)" }}alt=""/>
           </div>

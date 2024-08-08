@@ -1,4 +1,3 @@
-import Card from 'react-bootstrap/Card';
 import '../App.css'
 
 import arrow from '../assets/arrow.png'
@@ -15,7 +14,7 @@ const Contact = () => {
   return(
     <div className="overflow-hidden">
       <div className="container">
-        <div className="jumbotron text-center mt-4">
+        <div className="jumbotron jumbo text-center mt-4">
           <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
           <div className="d-flex title Raleway">
             <img src={arrow} alt="" className='arrow'/>

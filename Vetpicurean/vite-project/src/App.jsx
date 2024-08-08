@@ -14,8 +14,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { ButtonPrimary, ButtonSecondary } from "./components/Button";
 
-import paw1 from './assets/paw1.png'
-
 import logo from './assets/vetpic.png'
 
 function App() {
@@ -23,6 +21,7 @@ function App() {
   const [showLogin, setShowLogin] = useState(false)
   const [showRegis, setShowRegis] = useState(false)
   const [showBio, setShowBio] = useState(false)
+  const [activeSection, setActiveSection] = useState("home")
 
   const [route, setRoute] = useState("home")
   
@@ -30,13 +29,16 @@ function App() {
   const handleShowLogin = () => setShowLogin(true)
   const handleCloseRegis = () => setShowRegis(false)
   const handleShowRegis = () => setShowRegis(true)
-  const handleShowBio = () => setShowBio(true)
+  const handleShowBio = () => {
+    setShowRegis(false);
+    setShowBio(true)
+  }
   const handleCloseBio = () => setShowBio(false)
-
 
   const handleNavbarClick = (page) => {
     setRoute("Hmm")
     setRoute(page)
+    setActiveSection(page)
   }
 
   return (
@@ -44,7 +46,7 @@ function App() {
       <Fragment>
         {/* NAVBAR */}
         <Navbar expand="lg">
-          <Container fluid>
+          <Container fluid style={{padding: '10px 100px'}}>
             <img src={logo} alt="" style={{ width: "15%" }} />
             <Navbar.Collapse id="navbarScroll" className='justify-content-center Hind'>
               <Nav
@@ -53,11 +55,26 @@ function App() {
                 navbarScroll
               >
                 <div className="align-items-center">
-                  <span className='me-4' onClick={() => { setRoute("home") }}>HOME</span>
-                  <span className='me-4' onClick={() => handleNavbarClick('about')}>ABOUT</span>
-                  <span className='me-4' onClick={() => handleNavbarClick('tips')}>TIPS</span>
-                  <span className='me-4' onClick={() => handleNavbarClick('product')}>PRODUCT</span>
-                  <span className='me-4' onClick={() => handleNavbarClick('contact')}>CONTACT</span>
+                  <span className='me-4' 
+                    style={{color: activeSection == 'home' ? '#59EC74' : 'black'}}
+                    onClick={() => { setRoute("home"); setActiveSection('home') }}
+                  >HOME</span>
+                  <span className='me-4' 
+                    style={{color: activeSection == 'about' ? '#59EC74' : 'black'}}
+                    onClick={() => handleNavbarClick('about')}
+                  >ABOUT</span>
+                  <span className='me-4'
+                    style={{color: activeSection == 'tips' ? '#59EC74' : 'black'}}
+                    onClick={() => handleNavbarClick('tips')}
+                  >TIPS</span>
+                  <span className='me-4'
+                    style={{color: activeSection == 'product' ? '#59EC74' : 'black'}}
+                    onClick={() => handleNavbarClick('product')}
+                  >PRODUCT</span>
+                  <span className='me-4'
+                    style={{color: activeSection == 'contact' ? '#59EC74' : 'black'}}
+                    onClick={() => handleNavbarClick('contact')}
+                  >CONTACT</span>
                 </div>
               </Nav>
             </Navbar.Collapse>
@@ -121,7 +138,7 @@ function App() {
             </div>
             <div className='titles p-5' style={{textAlign: 'left'}}>
               <label>Pet Type</label>
-              <div className="d-flex gap-4 mt-3">
+              <div className="d-flex gap-4 mt-3 justify-content-between">
                 <ButtonPrimary>DOG</ButtonPrimary>
                 <ButtonPrimary>CAT</ButtonPrimary>
                 <ButtonPrimary>RABBIT</ButtonPrimary>

@@ -1,25 +1,18 @@
-// import { useState } from "react"
-import Card from 'react-bootstrap/Card';
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import '../App.css'
+
+import products from '../components/product';
+
 import paw2 from '../assets/paw2.png'
 import bone1 from '../assets/bone1.png'
-import product1 from '../assets/product1.png'
-import product2 from '../assets/product2.png'
-import product3 from '../assets/product3.png'
-import petSupp from '../assets/petSupp.png'
-import petSkin from '../assets/petSkin.png'
 import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
 import loc from '../assets/loc.png'
 import email from '../assets/email.png'
 import arrow from '../assets/arrow.png'
 import paw1 from '../assets/paw1.png'
-
-const products = [
-  { name: "[VITAMIN] Penambah Berat Badan Imun", image: product1 },
-  { name: "[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy", image: product2, specialOffer: true },
-  { name: "Chubby Balme Fungee Obat Jamur Gatal Kemerahan", image: product3 },
-]
 
 const testimonials = [
   {
@@ -54,6 +47,16 @@ const Testimonial = ({ stars, text, author, pet }) => (
 );
 
 const Product = () => {
+  const settings = {
+    dots: true,
+    speed: 1000,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    infinite: true,
+    autoplay: false,
+    autoplaySpeed: 1000,
+    rows: 3
+  };
 
   return(
     <div className="overflow-hidden">
@@ -69,8 +72,30 @@ const Product = () => {
             We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet&apos;s  health needs
           </p>
         </div>
+
         {/* CATEGORIES */}
-        {/* END CATEGORIES */}
+        <div className='categories-container'>
+          <div className="categories d-flex justify-content-between">
+            <img src={bone1} style={{ height:"80px", transform:"rotate(30deg)"}} alt=""/>
+            <h2>PRODUCTS</h2>
+            <img src={bone1} style={{ height:"80px", transform:"rotate(-10deg)" }}alt=""/>
+          </div>
+          <div className="product shadow">
+            <Slider {...settings}>
+              {products.map((item) => (
+                <div key={item.id}>
+                  <div className="img-bodys">
+                    <img src={item.src} alt={item.alt} />
+                    <div className='d-flex align-items-center justify-content-center title-product mb-4'>
+                      <p className='Raleway mb-0'>{item.title}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </div>    
+        
         <div className="d-flex decor">
           <img src={paw2} alt="" className='paww'/>
           <img src={bone1} alt="" className='bone'/>

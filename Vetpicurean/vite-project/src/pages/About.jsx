@@ -54,13 +54,15 @@ const About = () => {
     <div className="overflow-hidden">
       <div className="container">
         <div className="jumbotron text-center mt-4">
-          <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
-          <div className="d-flex title Raleway">
-            <img src={arrow} alt="" className='arrow'/>
-            <div className='subtitle'>FOR YOUR ANIMAL</div>
-            <img src={paw1} alt="" className='paw1'/>
+          <div className="jumbo">
+            <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
+            <div className="d-flex title Raleway">
+              <img src={arrow} alt="" className='arrow'/>
+              <div className='subtitle'>FOR YOUR ANIMAL</div>
+              <img src={paw1} alt="" className='paw1'/>
+            </div>
+            <p className='Raleway '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
           </div>
-          <p className='Raleway '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
 
           <div className="">
             <div className="d-flex align-items-center mt-5">
@@ -91,7 +93,7 @@ const About = () => {
 
         {/* WHY CHOOSE US */}
         <div className="why align-items-center container">
-          <Card className='shadow' style={{ backgroundColor: '#B1E697', borderColor: '#B1E697', padding: "3rem 0px", zIndex: 1 }}>
+          <Card className='shadow section-choose'>
             <Card.Body style={{ alignContent: 'center' }}>
               <div className="d-flex">
                 <div className="col-5 borders text-center position-relative">

@@ -1,7 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import '../App.css'
 
-
 import arrow from '../assets/arrow.png'
 import paw1 from '../assets/paw1.png'
 import paw2 from '../assets/paw2.png'
@@ -52,7 +51,7 @@ const Tips = () => {
   return(
     <div className="overflow-hidden">
       <div className="container">
-        <div className="jumbotron text-center mt-4">
+        <div className="jumbotron jumbo text-center mt-4">
           <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
           <div className="d-flex title Raleway">
             <img src={arrow} alt="" className='arrow'/>
@@ -106,7 +105,7 @@ const Tips = () => {
 
         {/* WHY CHOOSE US */}
         <div className="why align-items-center container">
-          <Card className='shadow' style={{ backgroundColor: '#B1E697', borderColor: '#B1E697', padding: "3rem 0px", zIndex: 1 }}>
+          <Card className='shadow section-choose'>
             <Card.Body style={{ alignContent: 'center' }}>
               <div className="d-flex">
                 <div className="col-5 borders text-center position-relative">
