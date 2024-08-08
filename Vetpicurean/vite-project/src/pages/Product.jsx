@@ -57,112 +57,19 @@ const Product = () => {
 
   return(
     <div className="overflow-hidden">
-    <div className="container">
-    <div className="jumbotron jumbo text-center mt-4">
-      <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
-      <div className="d-flex title Raleway">
-        <img src={arrow} alt="" className='arrow' />
-        <div className='subtitle'>FOR YOUR ANIMAL</div>
-        <img src={paw1} alt="" className='paw1' />
-      </div>
-      <p className='Raleway '>
-        We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet&apos;s  health needs
-      </p>
-      </div>
-      {/* CATEGORIES */}
-      <div className='categories-container'>
-          <img src={paw2} style={{ marginTop:"50px", width:"60px" }} alt=""/>
-          <h2 style={{ marginTop:"90px" }}>PRODUCTS</h2>
-          <div className="categories d-flex justify-content-between" style={{ marginTop:"50px" }}>
-            <img src={bone1} style={{ height:"80px", transform:"rotate(30deg)", marginTop:"100px" }} alt=""/>
-            <img src={petSupp} alt="" style={{ marginLeft:"100px" }}/>
-            <img src={petSkin} alt="" style={{ marginRight:"100px" }}/>
-            <img src={bone1} style={{ height:"80px", transform:"rotate(-10deg)" }}alt=""/>
+      <div className="container">
+        <div className="jumbotron jumbo text-center mt-4">
+          <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
+          <div className="d-flex title Raleway">
+            <img src={arrow} alt="" className='arrow' />
+            <div className='subtitle'>FOR YOUR ANIMAL</div>
+            <img src={paw1} alt="" className='paw1' />
           </div>
-          <div className="products">
-              <div className="d-flex py-5 justify-content-center" style={{ backgroundColor: '#B1E697', borderTopLeftRadius:"50px", borderTopRightRadius:"50px" }}>
-                <div className="col-3">
-                  <div className="card h-100 border" style={{ borderRadius:"20px" }}>
-                    <img src={product1} className="card-img-top" style={{ borderRadius:"20px" }}alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">[VITAMIN] Penambah Berat Badan Imun</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-3 ms-5 me-5">
-                  <div className="card h-100" style={{ borderRadius:"20px" }}>
-                    <img src={product2} className="card-img-top" style={{ borderRadius:"20px" }} alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-3">
-                  <div className="card h-100" style={{ borderRadius:"20px" }}>
-                    <img src={product3} className="card-img-top" style={{ borderTopRightRadius:"20px", borderTopLeftRadius:"20px" }} alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">Chubby Balme Fungee Obat Jamur Gatal Kemerahan</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="d-flex py-5 justify-content-center" style={{ backgroundColor: '#B1E697' }}>
-
-                <div className="col-3">
-                  <div className="card h-100 border" style={{ borderRadius:"20px" }}>
-                    <img src={product1} className="card-img-top" style={{ borderRadius:"20px" }}alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">[VITAMIN] Penambah Berat Badan Imun</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-3 ms-5 me-5">
-                  <div className="card h-100" style={{ borderRadius:"20px" }}>
-                    <img src={product2} className="card-img-top" style={{ borderRadius:"20px" }} alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-3">
-                  <div className="card h-100" style={{ borderRadius:"20px" }}>
-                    <img src={product3} className="card-img-top" style={{ borderTopRightRadius:"20px", borderTopLeftRadius:"20px" }} alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">Chubby Balme Fungee Obat Jamur Gatal Kemerahan</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="d-flex py-5 justify-content-center" style={{ backgroundColor: '#B1E697', borderBottomLeftRadius:"50px", borderBottomRightRadius:"50px" }}>
-
-                <div className="col-3">
-                  <div className="card h-100 border" style={{ borderRadius:"20px" }}>
-                    <img src={product1} className="card-img-top" style={{ borderRadius:"20px" }}alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">[VITAMIN] Penambah Berat Badan Imun</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-3 ms-5 me-5">
-                  <div className="card h-100" style={{ borderRadius:"20px" }}>
-                    <img src={product2} className="card-img-top" style={{ borderRadius:"20px" }} alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">[BUNDLE] Chubby Gummy Urigoel dan Chubby Gummy</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-3">
-                  <div className="card h-100" style={{ borderRadius:"20px" }}>
-                    <img src={product3} className="card-img-top" style={{ borderTopRightRadius:"20px", borderTopLeftRadius:"20px" }} alt="..."/>
-                    <div className="card-body" style={{ backgroundColor:"#397344", color:"white", borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px" }}>
-                      <h5 className="card-title">Chubby Balme Fungee Obat Jamur Gatal Kemerahan</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <p className='Raleway '>
+            We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet&apos;s  health needs
+          </p>
         </div>
+        {/* CATEGORIES */}
         {/* END CATEGORIES */}
         <div className="d-flex decor">
           <img src={paw2} alt="" className='paww'/>
@@ -222,7 +129,7 @@ const Product = () => {
 
           <p className='mt-4 text-center'>@2024 vetpicurean | All Right Reserved</p>
         </div>
-    </div>
+      </div>
     </div>
   )
 }

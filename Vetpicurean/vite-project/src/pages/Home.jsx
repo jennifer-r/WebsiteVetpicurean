@@ -198,7 +198,7 @@ const Home = () => {
                 <div key={item.id}>
                   <div className="img-bodys">
                     <img src={item.src} alt={item.alt} />
-                    <div className='title-product mb-4'>
+                    <div className='d-flex align-items-center justify-content-center title-product mb-4'>
                       <p className='Raleway mb-0'>{item.title}</p>
                     </div>
                   </div>
