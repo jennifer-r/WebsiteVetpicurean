@@ -185,6 +185,19 @@ ul {
   margin-top: 60px;
 }
 
+.kategori {
+  background-color: #9EE07D;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  width: 130px;
+}
+
+.petsupplement {
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .paww{
   transform: rotate(-30deg);
   width: 5rem;

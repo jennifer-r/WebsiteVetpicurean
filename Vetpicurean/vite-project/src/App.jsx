@@ -1,17 +1,13 @@
 import { Fragment, useState } from 'react'
+import { Dropdown, Container, Nav, Navbar, Modal } from 'react-bootstrap'
+import './App.css'
+
 import Home from './pages/Home'
 import About from './pages/About'
 import Tips from './pages/Tips'
 import Product from './pages/Product'
 import Contact from './pages/Contact'
-import './App.css'
 
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Modal from 'react-bootstrap/Modal';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import { ButtonPrimary, ButtonSecondary } from "./components/Button";
 
 import logo from './assets/vetpic.png'
@@ -22,6 +18,9 @@ function App() {
   const [showRegis, setShowRegis] = useState(false)
   const [showBio, setShowBio] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
+  const [selectedPets, setSelectedPets] = useState([])
+  const [selectedOption, setSelectedOption] = useState(null)
+
 
   const [route, setRoute] = useState("home")
   
@@ -36,10 +35,17 @@ function App() {
   const handleCloseBio = () => setShowBio(false)
 
   const handleNavbarClick = (page) => {
-    setRoute("Hmm")
     setRoute(page)
     setActiveSection(page)
   }
+
+  const handleTogglePetSelection = (pet) => {
+    setSelectedPets((prevSelectedPets) => 
+      prevSelectedPets.includes(pet)
+        ? prevSelectedPets.filter((item) => item !== pet)
+        : [...prevSelectedPets, pet]
+    );
+  };
 
   return (
     <>
@@ -139,10 +145,37 @@ function App() {
             <div className='titles p-5' style={{textAlign: 'left'}}>
               <label>Pet Type</label>
               <div className="d-flex gap-4 mt-3 justify-content-between">
-                <ButtonPrimary>DOG</ButtonPrimary>
-                <ButtonPrimary>CAT</ButtonPrimary>
-                <ButtonPrimary>RABBIT</ButtonPrimary>
-                <ButtonPrimary>OTHER</ButtonPrimary>
+              {['DOG', 'CAT', 'RABBIT', 'OTHER'].map((pet) => (
+              <ButtonPrimary
+                key={pet}
+                onClick={() => handleTogglePetSelection(pet)}
+                style={{
+                  backgroundColor: selectedPets.includes(pet) ? '#6BF584' : '#FFFFFF',
+                  color: selectedPets.includes(pet) ? '#FFFFFF' : '#6BF584',
+                  borderColor: '#6BF584',
+                  width: '100px', // Width untuk setiap button
+                  textAlign: 'center'
+                }}
+              >
+                {pet}
+              </ButtonPrimary>
+              ))}
+                {/* <ButtonPrimary 
+                  isActive={activePetType == 'DOG'} 
+                  onClick={() => setActivePetType('DOG')}
+                >DOG</ButtonPrimary>
+                <ButtonPrimary
+                  isActive={activePetType == 'CAT'} 
+                  onClick={() => setActivePetType('CAT')}
+                >CAT</ButtonPrimary>
+                <ButtonPrimary
+                  isActive={activePetType == 'RABBIT'} 
+                  onClick={() => setActivePetType('RABBIT')}
+                >RABBIT</ButtonPrimary>
+                <ButtonPrimary
+                  isActive={activePetType == 'OTHER'} 
+                  onClick={() => setActivePetType('OTHER')}
+                >OTHER</ButtonPrimary> */}
               </div>
 
               <label className='mt-4'>Gender</label>
@@ -175,16 +208,48 @@ function App() {
               </div>
 
               <label className='mt-4'>Age</label>
-              <DropdownButton id="dropdown-basic" title="Choose One" className='mt-3 choose Raleway'>
-                <Dropdown.Item href="#/action-1">13 - 17 tahun</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">18 - 24 tahun</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">25 - 34 tahun</Dropdown.Item>
-                <Dropdown.Item href="#/action-4">35 - 44 tahun</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">45 - 54 tahun</Dropdown.Item>
-                <Dropdown.Item href="#/action-6">55 - 64 tahun</Dropdown.Item>
-                <Dropdown.Item href="#/action-7"> &gt; 65 tahun</Dropdown.Item>
-              </DropdownButton>
-              
+              <Dropdown className="mt-3 w-100">
+                <Dropdown.Toggle
+                  className="choose Raleway"
+                  style={{
+                    width: '100%',
+                    textAlign: 'left',
+                    backgroundColor: 'transparent',
+                    borderColor: '#CED4DA',
+                    color: '#495057',
+                    padding: '8px',
+                    display: 'block',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {selectedOption || 'Choose One'}
+                </Dropdown.Toggle>
+                <Dropdown.Menu style={{ width: '100%' }}>
+                  {['13 - 17 tahun', '18 - 24 tahun', '25 - 34 tahun', '35 - 44 tahun', '45 - 54 tahun', '> 65 tahun'].map((age) => (
+                    <Dropdown.Item
+                      key={age}
+                      onClick={() => setSelectedOption(age)}
+                    >
+                      {age}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+              {/* <DropdownInput 
+                title="Choose One" 
+                className='mt-3 Raleway'
+                items={[
+                  "13 - 17 tahun",
+                  "18 - 24 tahun",
+                  "25 - 34 tahun",
+                  "35 - 44 tahun",
+                  "45 - 54 tahun",
+                  "> 65 years"
+                ]}  
+              /> 
+              */}
               
               <label className='mt-4'>Expense (Monthly)</label>
               <input type="text" className="form-control mt-3" placeholder='Expense (Monthly)'/>

@@ -13,6 +13,9 @@ import loc from '../assets/loc.png'
 import email from '../assets/email.png'
 import arrow from '../assets/arrow.png'
 import paw1 from '../assets/paw1.png'
+import petsupplement from '../assets/petsupplement.png'
+import petskincare from '../assets/petskincare.png'
+
 
 const testimonials = [
   {
@@ -72,14 +75,30 @@ const Product = () => {
             We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet&apos;s  health needs
           </p>
         </div>
+        <div className="d-flex justify-content-between mt-5">
+          <img src={paw2} className='paww' alt=""/>
+          <img src={bone1} style={{ height:"80px", transform:"rotate(100deg)" }}alt=""/>
+        </div>
 
         {/* CATEGORIES */}
         <div className='categories-container'>
-          <div className="categories d-flex justify-content-between">
+          <h2>PRODUCTS</h2>
+          <img src={paw2} style={{width:"60px", transform:"rotate(30deg)", marginRight: '-60%'}} alt=""/>
+          <div className="categories d-flex align-items-end justify-content-between">
             <img src={bone1} style={{ height:"80px", transform:"rotate(30deg)"}} alt=""/>
-            <h2>PRODUCTS</h2>
+            <div className="d-flex justify-contet-center" style={{gap: '350px'}}>
+              <div className="d-flex flex-column align-items-center">
+                <img src={petsupplement} alt="" className='kategori'/>
+                <p className='Hind mt-4 petsupplement'>PET SUPPLEMENT</p>
+              </div>
+              <div className="d-flex flex-column align-items-center">
+                <img src={petskincare} alt="" className='kategori'/>
+                <p className='Hind mt-4 petsupplement'>PET SKINCARE</p>
+              </div>
+            </div>
             <img src={bone1} style={{ height:"80px", transform:"rotate(-10deg)" }}alt=""/>
           </div>
+          <img src={paw2} style={{width:"60px", transform:"rotate(30deg)"}} alt=""/>
           <div className="product shadow">
             <Slider {...settings}>
               {products.map((item) => (

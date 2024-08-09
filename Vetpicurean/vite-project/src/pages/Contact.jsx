@@ -84,7 +84,9 @@ const Contact = () => {
 
             <button className='send mt-4'>SEND MESSANGE</button>
           </div>
-          <img src={paw2} alt="" className='paw2'style={{width: '12%', height: '20%', marginBottom: '-20px', marginRight: '100%'}}/>
+        </div>
+        <div className="" style={{position: 'relative', overflow: 'hidden'}}>
+          <img src={paw2} alt="" className='paw2' style={{width: '12%', height: '20%', marginBottom: '-20px', marginLeft: 0}}/>
         </div>
 
         {/* FOOTER */}

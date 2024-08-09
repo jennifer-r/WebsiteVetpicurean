@@ -1,3 +1,4 @@
+import React, {useState} from 'react'
 import { Button } from "react-bootstrap";
 import PropTypes from 'prop-types';
 
@@ -9,7 +10,7 @@ const ButtonInterface = {
 ButtonPrimary.propTypes = ButtonInterface;
 ButtonSecondary.propTypes = ButtonInterface;
 
-export function ButtonPrimary({ children, onClick }) {
+export function ButtonPrimary({ children, onClick, style }) {
   return (
     <>
       <style type="text/css">
@@ -18,9 +19,9 @@ export function ButtonPrimary({ children, onClick }) {
             .btn-primary-custom {
               width: 110px;
               font-weight: bold;
-              border-color: #6BF584;
-              color: #6BF584;
-              background-color: #FFFFFF; 
+              border-color: '#6BF584'
+              color: '#6BF584'
+              background-color: '#FFFFFF'
               transition: 0.3s;
               text-decoration: none;
             }
@@ -32,7 +33,14 @@ export function ButtonPrimary({ children, onClick }) {
           `
         }
       </style>
-      <Button variant="link" className="btn-primary-custom" onClick={onClick}>{children}</Button>
+      <Button 
+        variant="link" 
+        className="btn-primary-custom"
+        onClick={onClick}
+        style={style}
+      >
+        {children}
+      </Button>
     </>
   )
 }

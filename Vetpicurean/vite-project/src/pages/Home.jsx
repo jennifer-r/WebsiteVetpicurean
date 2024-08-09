@@ -1,4 +1,4 @@
-import Card from 'react-bootstrap/Card';
+import { Card }from 'react-bootstrap';
 
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
