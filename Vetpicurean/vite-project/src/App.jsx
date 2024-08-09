@@ -78,6 +78,14 @@ function App() {
                     style={{color: activeSection == 'contact' ? '#59EC74' : 'black'}}
                     onClick={() => handleNavbarClick('contact')}
                   >CONTACT</span>
+                  <span className='me-4'
+                    style={{color: activeSection == 'detailProduct' ? '#59EC74' : 'black'}}
+                    onClick={() => handleNavbarClick('detailProduct')}
+                  >DetProd</span>
+                  <span className='me-4'
+                    style={{color: activeSection == 'detailTips' ? '#59EC74' : 'black'}}
+                    onClick={() => handleNavbarClick('detailTips')}
+                  >DetTips</span>
                 </div>
               </Nav>
             </Navbar.Collapse>
