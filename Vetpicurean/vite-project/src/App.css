@@ -440,3 +440,67 @@ ul {
 .rotate-180 {
   transform: rotate(180deg);
 }
+
+/* DETAIL TIPS */
+.detail-tips {
+  font-family: 'Hind Siliguri', cursive;
+  color: #000000;
+  line-height: 1.6;
+  width: auto;
+}
+
+.titleTips  {
+  font-size: 50px;
+  color: #448250;
+  font-weight: 900;
+  margin-top: 30px;
+  letter-spacing: -1px;
+  text-align: center;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.banner {
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.boneTips {
+  width: 5rem;
+  margin-left: 55rem;
+  transform: rotate(-90deg);
+}
+
+.contentTips {
+  padding: 100px;
+}
+
+.contentTips p {
+  margin-bottom: 20px;
+}
+
+.contentTips ol {
+  margin-left: 20px;
+}
+
+.contentTips li {
+  margin-bottom: 20px;
+}
+
+.first-letter {
+  font-size: 3em; 
+  font-weight: bold; 
+  float: left; 
+  line-height: 0.1; 
+  margin-right: 0.01em; 
+  color: #397344; 
+}
+
+strong {
+  color: #448250;
+  font-size:large;
+}
+
+/* END DETAIL TIPS */

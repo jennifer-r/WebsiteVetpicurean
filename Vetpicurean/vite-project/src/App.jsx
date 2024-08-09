@@ -7,6 +7,10 @@ import About from './pages/About'
 import Tips from './pages/Tips'
 import Product from './pages/Product'
 import Contact from './pages/Contact'
+// TAMBAHAN
+import DetailProduct from './pages/DetailProduct'
+import DetailTips from './pages/DetailTips'
+import './App.css'
 
 import { ButtonPrimary, ButtonSecondary } from "./components/Button";
 
@@ -81,6 +85,14 @@ function App() {
                     style={{color: activeSection == 'contact' ? '#59EC74' : 'black'}}
                     onClick={() => handleNavbarClick('contact')}
                   >CONTACT</span>
+                  <span className='me-4'
+                    style={{color: activeSection == 'detailProduct' ? '#59EC74' : 'black'}}
+                    onClick={() => handleNavbarClick('detailProduct')}
+                  >DetProd</span>
+                  <span className='me-4'
+                    style={{color: activeSection == 'detailTips' ? '#59EC74' : 'black'}}
+                    onClick={() => handleNavbarClick('detailTips')}
+                  >DetTips</span>
                 </div>
               </Nav>
             </Navbar.Collapse>
@@ -275,6 +287,13 @@ function App() {
           }
           {
             route == "contact" && <Contact />
+          }
+          {/* TAMBAH */}
+          {
+            route == "detailProduct" && <DetailProduct />
+          }
+          {
+            route == "detailTips" && <DetailTips />
           }
         </div>
 
