@@ -4,6 +4,9 @@ import About from './pages/About'
 import Tips from './pages/Tips'
 import Product from './pages/Product'
 import Contact from './pages/Contact'
+// TAMBAHAN
+import DetailProduct from './pages/DetailProduct'
+import DetailTips from './pages/DetailTips'
 import './App.css'
 
 import Container from 'react-bootstrap/Container';
@@ -210,6 +213,13 @@ function App() {
           }
           {
             route == "contact" && <Contact />
+          }
+          {/* TAMBAH */}
+          {
+            route == "detailProduct" && <DetailProduct />
+          }
+          {
+            route == "detailTips" && <DetailTips />
           }
         </div>
 
