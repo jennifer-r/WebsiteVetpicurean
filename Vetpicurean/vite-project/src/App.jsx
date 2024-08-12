@@ -10,7 +10,6 @@ import Contact from './pages/Contact'
 // TAMBAHAN
 import DetailProduct from './pages/DetailProduct'
 import DetailTips from './pages/DetailTips'
-import './App.css'
 
 import { ButtonPrimary, ButtonSecondary } from "./components/Button";
 
