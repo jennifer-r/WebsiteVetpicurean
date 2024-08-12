@@ -51,7 +51,7 @@ const testi = [
     id : 9,
     text: "Beli karena lihat review banyak yang bilang bagus terus kebetulan si bos habis steril jadi biar tambah booster imun. Udah dicobain dan ternyata doyan dong! Jadi penasaran sama collaberry/essential. Bakal beli lagi pastinya kalo abis. Thank You :*",
     author: "Amalia_hayudiarti",
-    pet: "Kucinng"
+    pet: "Kucing"
   }
 ]
 

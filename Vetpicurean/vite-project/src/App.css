@@ -234,10 +234,7 @@ ul {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   min-height: 267px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  text-align: justify;
   position: relative;
 }
 
@@ -247,11 +244,13 @@ ul {
   margin: 0;
 }
 
+.testimonial .author {
+  margin-top: auto;
+}
+
 .testimonial strong {
   font-weight: bold;
   color: #333;
-  display: block;
-  margin-top: auto;
 }
 
 .slick-dots li button:before {
@@ -259,8 +258,8 @@ ul {
   color: black;
 }
 
-.slick-dots li.slick-dots button:before {
-  font-size: 50px;
+.slick-dots li.slick-active button:before {
+  font-size: 10px;
   color: black;
 }
 

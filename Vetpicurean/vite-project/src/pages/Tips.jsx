@@ -1,5 +1,11 @@
 import { Card } from 'react-bootstrap';
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import '../App.css'
+
+import testi from '../components/testi';
+
 
 import arrow from '../assets/arrow.png'
 import paw1 from '../assets/paw1.png'
@@ -14,39 +20,17 @@ import loc from '../assets/loc.png'
 import email from '../assets/email.png'
 import tipspic from '../assets/pictips.png'
 
-const testimonials = [
-  {
-    stars: 5,
-    text: "Lorem ipsum dolor amet, consectetur adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia, interdum conubia sociosqu convallis. Etiam sollicitudin dapibus maximus.",
-    author: "WALTER",
-    pet: "ANDI'S DOG"
-  },
-  {
-    stars: 5,
-    text: "Lorem ipsum dolor amet, consectetur adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia, interdum conubia sociosqu convallis. Etiam sollicitudin dapibus maximus.",
-    author: "WALTER",
-    pet: "ANDI'S DOG"
-  },
-  {
-    stars: 5,
-    text: "Lorem ipsum dolor amet, consectetur adipiscing elit. Vestibulum lacus facilisi per ullamcorper finibus curabitur porttitor. Arcu finibus feugiat suscipit erat conubia, interdum conubia sociosqu convallis. Etiam sollicitudin dapibus maximus.",
-    author: "WALTER",
-    pet: "ANDI'S DOG"
-  }
-];
-
-const Testimonial = ({ stars, text, author, pet }) => (
-  <div className="testimonial Raleway">
-    <div className="stars">{'★'.repeat(stars)}</div>
-    <p>{text}</p>
-    <div className="author">
-      <p>{author}</p>
-      <p>{pet}</p>
-    </div>
-  </div>
-);
-
 const Tips = () => {
+  const settingss = {
+    dots: true,            
+    infinite: true,        
+    speed: 500,            
+    slidesToShow: 3,       
+    slidesToScroll: 3,     
+    autoplay: true,        
+    autoplaySpeed: 10000,  
+    arrows: false          
+  };
 
   return(
     <div className="overflow-hidden">
@@ -155,11 +139,16 @@ const Tips = () => {
         {/* TESTIMONIAL */}
         <div className="testimonials-section">
           <h2 className='mb-5'>TESTIMONIALS</h2>
-          <div className="testimonials">
-            {testimonials.map((testimonial, index) => (
-              <Testimonial key={index} {...testimonial} />
-            ))}
-          </div>
+            <Slider {...settingss}>
+              {testi.map((item) => (
+                <div key={item.id} className="d-flex flex-column justify-contetnt-between testimonial Raleway">
+                  <p>{item.text}</p>
+                  <div className="author">
+                    <p><strong>{item.author}</strong> - {item.pet}</p>
+                  </div>
+                </div>
+              ))}
+            </Slider>
         </div>
 
         {/* FOOTER */}

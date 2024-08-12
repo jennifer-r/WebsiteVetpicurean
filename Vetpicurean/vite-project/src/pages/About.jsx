@@ -129,9 +129,11 @@ const About = () => {
           <h2 className='mb-5'>TESTIMONIALS</h2>
             <Slider {...settings}>
               {testi.map((item) => (
-                <div key={item.id} className="testimonial Raleway">
+                <div key={item.id} className="d-flex flex-column justify-contetnt-between testimonial Raleway">
                   <p>{item.text}</p>
-                  <p><strong>{item.author}</strong> - {item.pet}</p>
+                  <div className="author">
+                    <p><strong>{item.author}</strong> - {item.pet}</p>
+                  </div>
                 </div>
               ))}
             </Slider>
