@@ -1,30 +1,65 @@
-import '../App.css'
+import React, { useState } from 'react';
+import products from '../components/product';
 
 import paw2 from '../assets/paw2.png'
 import bone1 from '../assets/bone1.png'
-import image1 from '../assets/product1.1.png'
-import image2 from '../assets/product1.2.png'
-import image3 from '../assets/product1.3.png'
-import product1 from '../assets/product1.png'
 
 const DetailProduct = () => {
+    const [currentProduct, setCurrentProduct] = useState(products[0]);
+    const [mainImage, setMainImage] = useState(currentProduct.src[0]);
 
-    return(
-        <div className="overflow-hidden">
-            <img src={bone1} className="bone1 position-absolute" style={{ top: "-120px", right: "0" }} alt="" />
-            <img src={product1} style={{ marginLeft:"100px", marginTop:"50px", width:"300px" }} alt="" />
-            <div style={{ marginTop:"20px", marginLeft:"102px" }}>
-                <img src={image1} style={{ marginRight:"20px", width:"85px" }} alt="" />
-                <img src={image2} style={{ marginRight:"20px", width:"85px" }} alt="" />
-                <img src={image3} style={{ width:"85px" }} alt="" />
+    const changeProduct = (product) => {
+        setCurrentProduct(product);
+        setMainImage(product.src[0]);
+    };
+
+    return (
+        <div className="container my-5">
+            <div className="row">
+                <div className="col-md-6 position-relative">
+                    <img src={mainImage} alt="" className="img-fluid" />
+                    <div className="position-absolute" style={{ top: '10px', left: '10px', zIndex: 1 }}>
+                        <img src={bone1} alt="" style={{ width: '50px', height: '50px' }} />
+                    </div>
+                    <div className="d-flex mt-3">
+                        {currentProduct.src.map((img, index) => (
+                            <img
+                                key={index}
+                                src={img}
+                                alt={`Thumbnail ${index + 1}`}
+                                className="img-thumbnail mx-1"
+                                style={{ width: '60px', height: '60px', cursor: 'pointer' }}
+                                onClick={() => setMainImage(img)}
+                            />
+                        ))}
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <h2>{currentProduct.title}</h2>
+                    <p>{currentProduct.description}</p>
+                    <h4>Review</h4>
+                    <div className="p-4 bg-light rounded position-relative">
+                        <p>Lorem ipsum dolor sit amet...</p>
+                        <div className="position-absolute" style={{ bottom: '10px', right: '10px' }}>
+                            <img src="assets/paw2.png" alt="" style={{ width: '40px', height: '40px' }} />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div style={{ }}>
-                <h2 style={{ color:"grey" }}>CHUBBY GUMMY</h2>
+            <div className="row mt-5">
+                <h4>Select Another Product</h4>
+                {products.map((product) => (
+                    <button
+                        key={product.id}
+                        className="btn btn-outline-primary mx-2"
+                        onClick={() => changeProduct(product)}
+                    >
+                        {product.title}
+                    </button>
+                ))}
             </div>
         </div>
-        
-        
-    )
-}
+    );
+};
 
-export default DetailProduct
+export default DetailProduct;
