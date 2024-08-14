@@ -1,5 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Dropdown, Container, Nav, Navbar, Modal } from 'react-bootstrap'
+import { Route, Routes, useNavigate, NavLink } from 'react-router-dom';
+import axios from 'axios'
 import './App.css'
 
 import Home from './pages/Home'
@@ -16,6 +18,7 @@ import { ButtonPrimary, ButtonSecondary } from "./components/Button";
 import logo from './assets/vetpic.png'
 
 function App() {
+  const navigate = useNavigate();
 
   const [showLogin, setShowLogin] = useState(false)
   const [showRegis, setShowRegis] = useState(false)
@@ -23,7 +26,14 @@ function App() {
   const [activeSection, setActiveSection] = useState("home")
   const [selectedPets, setSelectedPets] = useState([])
   const [selectedOption, setSelectedOption] = useState(null)
-
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [fullName, setFullName] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [gender, setGender] = useState('')
+  const [numberOfPets, setNumberOfPets] = useState('')
+  const [expense, setExpense] = useState('')
 
   const [route, setRoute] = useState("home")
   
@@ -40,6 +50,7 @@ function App() {
   const handleNavbarClick = (page) => {
     setRoute(page)
     setActiveSection(page)
+    navigate(`/${page}`)
   }
 
   const handleTogglePetSelection = (pet) => {
@@ -50,6 +61,125 @@ function App() {
     );
   };
 
+  const handleLogin = async () => {
+    if (!email || !password) {
+      alert('Please fill out all fields');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', {
+        email,
+        password,
+      });
+      
+      if (response.status === 200) {
+        const { token, fullName } = response.data;
+        localStorage.setItem('token', token);
+        setFullName(fullName)
+        alert('Login successful');
+        setIsAuthenticated(true);
+        handleCloseLogin()
+      }
+    } catch (err) {
+        console.error('Login failed', err);
+        if (err.response && err.response.status === 400) {
+          alert(err.response.data.message);
+        } else {
+          alert('Login failed');
+        }
+    }
+  }
+
+  const handleRegister = async () => {
+    if (!fullName || !email|| !password || !confirmPassword) {
+      alert('Please fill out all fields');
+      return;
+    }
+
+    if(password !== confirmPassword){
+      alert('Passwords do not match')
+      return;
+    }
+
+    try{
+      const response = await axios.post('http://localhost:5000/api/register', {
+        fullName,
+        email,
+        password,
+        confirmPassword
+      });
+      
+      if (response.status === 201) {
+        alert('Registration successful');
+        const { userId } = response.data;
+        localStorage.setItem('userId', userId)
+        handleCloseRegis()
+        handleShowBio()
+      }
+    }catch (err) {
+      console.error('Registration failed: ', err);
+      if (err.response && err.response.status === 400) {
+        alert(err.response.data.message);
+      } else {
+        alert('Registration failed');
+      }
+    }
+  }
+
+  const handleSaveBio = async () => {
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+
+    if (!userId || selectedPets.length === 0 || !gender || !numberOfPets || !selectedOption || !expense) {
+      alert('Please fill out all fields');
+      return;
+    }
+
+    console.log('Data being sent:', {
+      userId,
+      petType: selectedPets,
+      gender,
+      numberOfPets,
+      age: selectedOption,
+      expense
+    });
+
+    try{
+      const response = await axios.post('http://localhost:5000/api/petbio', {
+        userId,
+        petType: selectedPets,
+        gender,
+        numberOfPets,
+        age: selectedOption,
+        expense
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      
+      if (response.status === 201) {
+        alert('Pet biodata saved successful')
+        handleCloseBio()
+        handleShowLogin()
+      }
+    }catch (err) {
+      console.error('Failed to save pet biodata: ', err);
+      if (err.response) {
+        alert(`Error: ${err.response.data.message}`);
+      } else {
+        alert('Failed to save pet biodata');
+      }    }
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    setIsAuthenticated(false)
+    setFullName('')
+    alert('Yout have logged out successfully')
+  }
+
   return (
     <>
       <Fragment>
@@ -57,14 +187,15 @@ function App() {
         <Navbar expand="lg">
           <Container fluid style={{padding: '10px 100px'}}>
             <img src={logo} alt="" style={{ width: "15%" }} />
-            <Navbar.Collapse id="navbarScroll" className='justify-content-center Hind'>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
               <Nav
-                className="my-2 my-lg-0 align-items-center"
+                className="me-auto d-flex flex-row align-items-center"
                 style={{ maxHeight: '100px', fontWeight: '500' }}
-                navbarScroll
+                
               >
                 <div className="align-items-center">
-                  <span className='me-4' 
+                  {/* <span className='me-4' 
                     style={{color: activeSection == 'home' ? '#59EC74' : 'black'}}
                     onClick={() => { setRoute("home"); setActiveSection('home') }}
                   >HOME</span>
@@ -91,13 +222,30 @@ function App() {
                   <span className='me-4'
                     style={{color: activeSection == 'detailTips' ? '#59EC74' : 'black'}}
                     onClick={() => handleNavbarClick('detailTips')}
-                  >DetTips</span>
+                  >DetTips</span> */}
+          <NavLink to="/home" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>HOME</NavLink>
+          <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>ABOUT</NavLink>
+          <NavLink to="/tips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>TIPS</NavLink>
+          <NavLink to="/product" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>PRODUCT</NavLink>
+          <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>CONTACT</NavLink>
+          <NavLink to="/detailProduct" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>DetProd</NavLink>
+          <NavLink to="/detailTips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>DetTips</NavLink>
+
                 </div>
               </Nav>
             </Navbar.Collapse>
             <div className="d-flex gap-3 Raleway">
-              <ButtonPrimary onClick={handleShowLogin}>LOGIN</ButtonPrimary>
-              <ButtonSecondary onClick={handleShowRegis}>REGISTER</ButtonSecondary>
+              {isAuthenticated ? (
+                <>
+                  <span className='navbar-text'>Hello, {fullName} !</span>
+                  <ButtonSecondary onClick={handleLogout}>LOGOUT</ButtonSecondary>
+                </>
+              ) : (
+                <>
+                  <ButtonPrimary onClick={handleShowLogin}>LOGIN</ButtonPrimary>
+                  <ButtonSecondary onClick={handleShowRegis}>REGISTER</ButtonSecondary>
+                </>
+              )}
             </div>
           </Container>
         </Navbar>
@@ -111,13 +259,13 @@ function App() {
             </div>
             <div className='titles p-5' style={{textAlign: 'left'}}>
               <label>Email</label>
-              <input type="text" className="form-control mt-3" placeholder='name@example.com'/>
+              <input type="text" className="form-control mt-3" placeholder='name@example.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
 
               <label className='mt-4'>Password</label>
-              <input type="text" className="form-control mt-3" placeholder='Password'/>
+              <input type="text" className="form-control mt-3" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
 
-            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleCloseLogin}>LOGIN</button>
+            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleLogin}>LOGIN</button>
           </Modal.Body>
         </Modal>
 
@@ -130,19 +278,19 @@ function App() {
             </div>
             <div className='titles p-5' style={{textAlign: 'left'}}>
               <label>Full Name</label>
-              <input type="text" className="form-control mt-3" placeholder='Full Name'/>
+              <input type="text" className="form-control mt-3" placeholder='Full Name' value={fullName} onChange={(e) => setFullName(e.target.value)}/>
 
               <label className='mt-4'>Email</label>
-              <input type="text" className="form-control mt-3" placeholder='name@example.com'/>
+              <input type="text" className="form-control mt-3" placeholder='name@example.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
 
               <label className='mt-4'>Password</label>
-              <input type="text" className="form-control mt-3" placeholder='Password'/>
+              <input type="text" className="form-control mt-3" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
               
               <label className='mt-4'>Confirm Password</label>
-              <input type="text" className="form-control mt-3" placeholder='Confirm Password'/>
+              <input type="text" className="form-control mt-3" placeholder='Confirm Password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
             </div>
 
-            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleShowBio} >Continue</button>
+            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleRegister} >Continue</button>
           </Modal.Body>
         </Modal>
 
@@ -171,32 +319,16 @@ function App() {
                 {pet}
               </ButtonPrimary>
               ))}
-                {/* <ButtonPrimary 
-                  isActive={activePetType == 'DOG'} 
-                  onClick={() => setActivePetType('DOG')}
-                >DOG</ButtonPrimary>
-                <ButtonPrimary
-                  isActive={activePetType == 'CAT'} 
-                  onClick={() => setActivePetType('CAT')}
-                >CAT</ButtonPrimary>
-                <ButtonPrimary
-                  isActive={activePetType == 'RABBIT'} 
-                  onClick={() => setActivePetType('RABBIT')}
-                >RABBIT</ButtonPrimary>
-                <ButtonPrimary
-                  isActive={activePetType == 'OTHER'} 
-                  onClick={() => setActivePetType('OTHER')}
-                >OTHER</ButtonPrimary> */}
               </div>
 
               <label className='mt-4'>Gender</label>
               <div className="d-flex mt-3">
                 <div className="form-check Raleway" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="radio1" name="optradio" value="option1" checked/>Male
+                  <input type="radio" className="form-check-input" id="maleRadio" name="gender" value="Male" checked={gender === 'Male'} onChange={(e) => setGender(e.target.value)}/>Male
                   <label className="form-check-label me-5"></label>
                 </div>
                 <div className="form-check Raleway" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="radio2" name="optradio" value="option2"/>Female
+                  <input type="radio" className="form-check-input" id="femaleRadio" name="gender" value="Female" checked={gender === 'Female'} onChange={(e) => setGender(e.target.value)}/>Female
                   <label className="form-check-label"></label>
                 </div>
               </div>
@@ -205,15 +337,15 @@ function App() {
               <label className='mt-4'>Number of pet</label>
               <div className="d-flex mt-3">
                 <div className="form-check Raleway" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="radio1" name="optradio" value="option1"/> kurang dari 3 pets
+                  <input type="radio" className="form-check-input" id="lesThan3Pets" name="numberOfPets" value="< 3"  checked={numberOfPets === '< 3'} onChange={(e) => setNumberOfPets(e.target.value)}/> less than 3 pets
                   <label className="form-check-label"></label>
                 </div>
                 <div className="form-check Raleway me-5 ms-5" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="radio2" name="optradio" value="option2"/>3 - 7 pets
+                  <input type="radio" className="form-check-input" id="threeToSevenPets" name="numberOfPets" value="3 - 7"  checked={numberOfPets === '3 - 7'} onChange={(e) => setNumberOfPets(e.target.value)}/>3 - 7 pets
                   <label className="form-check-label"></label>
                 </div>
                 <div className="form-check Raleway" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="radio2" name="optradio" value="option2"/>&gt; 7 pets
+                  <input type="radio" className="form-check-input" id="moreThanSevenPets" name="numberOfPets" value="> 7" checked={numberOfPets === '> 7'} onChange={(e) => setNumberOfPets(e.target.value)}/>&gt; 7 pets
                   <label className="form-check-label"></label>
                 </div>
               </div>
@@ -248,30 +380,17 @@ function App() {
                   ))}
                 </Dropdown.Menu>
               </Dropdown>
-              {/* <DropdownInput 
-                title="Choose One" 
-                className='mt-3 Raleway'
-                items={[
-                  "13 - 17 tahun",
-                  "18 - 24 tahun",
-                  "25 - 34 tahun",
-                  "35 - 44 tahun",
-                  "45 - 54 tahun",
-                  "> 65 years"
-                ]}  
-              /> 
-              */}
               
               <label className='mt-4'>Expense (Monthly)</label>
-              <input type="text" className="form-control mt-3" placeholder='Expense (Monthly)'/>
+              <input type="text" className="form-control mt-3" placeholder='Expense (Monthly)' value={expense} onChange={(e) => setExpense(e.target.value)}/>
             </div>
 
-            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleCloseBio}>Register</button>
+            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleSaveBio}>Register</button>
           </Modal.Body>
         </Modal>
 
 
-        <div className="content">
+        {/* <div className="content">
           {
             route == "home" && <Home />
           }
@@ -288,13 +407,26 @@ function App() {
             route == "contact" && <Contact />
           }
           {/* TAMBAH */}
-          {
+          {/* {
             route == "detailProduct" && <DetailProduct />
           }
           {
             route == "detailTips" && <DetailTips />
           }
-        </div>
+        </div> */}
+
+        <Container fluid>
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/tips" element={<Tips />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/detailProduk" element={<DetailProduct />} />
+            <Route path="/detailTips" element={<DetailTips />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </Container>
 
 
       </Fragment>

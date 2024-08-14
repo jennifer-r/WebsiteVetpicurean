@@ -47,6 +47,10 @@ const Home = () => {
     arrows: false          
   };
 
+  const handleShopNowClick = () => {
+    window.location.href = 'https://shopee.co.id/vetpicureanofficial?entryPoint=ShopBySearch&searchKeyword=vetpicurean&is_from_login=true';
+  };
+
   return (
     <div className="overflow-hidden">
 
@@ -125,7 +129,7 @@ const Home = () => {
               <img src={product} alt="" style={{ width: '30%', position: 'absolute', top: '-85px', left: '60px' }} />
               <div className="caption" style={{marginLeft: '30%'}}>
                 <h3 className='article'>BASIC NUTRITION <br /> CHUBBY GUMMY</h3>
-                <p className='link mb-0'>Shop Now</p>
+                <p className='link mb-0' onClick={handleShopNowClick}>Shop Now</p>
               </div>
             </div>
           </div>

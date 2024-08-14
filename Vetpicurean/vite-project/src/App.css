@@ -2,6 +2,32 @@
   margin: 0 auto;
 }
 
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link.active {
+  color: #59EC74;
+}
+
+.nav-link:hover {
+  color: #39b54a;
+}
+
+/* Ensure the navbar is aligned properly */
+.navbar-collapse {
+  flex-grow: 0;
+}
+
 .Hind {
   font-family: 'Hind Siliguri', cursive;
 }
