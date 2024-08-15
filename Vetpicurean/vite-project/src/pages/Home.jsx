@@ -1,4 +1,5 @@
 import { Card }from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
@@ -26,6 +27,8 @@ import loc from '../assets/loc.png'
 import email from '../assets/email.png'
 
 const Home = () => {
+  const navigate = useNavigate()
+
   const settings = {
     dots: true,
     speed: 1000,
@@ -50,6 +53,10 @@ const Home = () => {
   const handleShopNowClick = () => {
     window.location.href = 'https://shopee.co.id/vetpicureanofficial?entryPoint=ShopBySearch&searchKeyword=vetpicurean&is_from_login=true';
   };
+
+  const handleMoreDetailClick = () => {
+    navigate('/tips')
+  }
 
   return (
     <div className="overflow-hidden">
@@ -120,7 +127,7 @@ const Home = () => {
               <img src={cat} alt="" style={{ width: '55%', position: 'absolute', top: '-200px' }} />
               <div className="caption">
                 <h3 className='article'>LEARN HOW TO <br /> CARE PET'S</h3>
-                <p className='link mb-0'>More Details</p>
+                <p className='link mb-0' onClick={handleMoreDetailClick}>More Details</p>
               </div>
             </div>
           </div>

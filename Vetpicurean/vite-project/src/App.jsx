@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Dropdown, Container, Nav, Navbar, Modal } from 'react-bootstrap'
-import { Route, Routes, useNavigate, NavLink } from 'react-router-dom';
+import { Route, Routes, NavLink } from 'react-router-dom';
 import axios from 'axios'
 import './App.css'
 
@@ -18,12 +18,9 @@ import { ButtonPrimary, ButtonSecondary } from "./components/Button";
 import logo from './assets/vetpic.png'
 
 function App() {
-  const navigate = useNavigate();
-
   const [showLogin, setShowLogin] = useState(false)
   const [showRegis, setShowRegis] = useState(false)
   const [showBio, setShowBio] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
   const [selectedPets, setSelectedPets] = useState([])
   const [selectedOption, setSelectedOption] = useState(null)
   const [email, setEmail] = useState('')
@@ -35,8 +32,6 @@ function App() {
   const [numberOfPets, setNumberOfPets] = useState('')
   const [expense, setExpense] = useState('')
 
-  const [route, setRoute] = useState("home")
-  
   const handleCloseLogin = () => setShowLogin(false)
   const handleShowLogin = () => setShowLogin(true)
   const handleCloseRegis = () => setShowRegis(false)
@@ -46,12 +41,6 @@ function App() {
     setShowBio(true)
   }
   const handleCloseBio = () => setShowBio(false)
-
-  const handleNavbarClick = (page) => {
-    setRoute(page)
-    setActiveSection(page)
-    navigate(`/${page}`)
-  }
 
   const handleTogglePetSelection = (pet) => {
     setSelectedPets((prevSelectedPets) => 
@@ -189,49 +178,14 @@ function App() {
             <img src={logo} alt="" style={{ width: "15%" }} />
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav
-                className="me-auto d-flex flex-row align-items-center"
-                style={{ maxHeight: '100px', fontWeight: '500' }}
-                
-              >
-                <div className="align-items-center">
-                  {/* <span className='me-4' 
-                    style={{color: activeSection == 'home' ? '#59EC74' : 'black'}}
-                    onClick={() => { setRoute("home"); setActiveSection('home') }}
-                  >HOME</span>
-                  <span className='me-4' 
-                    style={{color: activeSection == 'about' ? '#59EC74' : 'black'}}
-                    onClick={() => handleNavbarClick('about')}
-                  >ABOUT</span>
-                  <span className='me-4'
-                    style={{color: activeSection == 'tips' ? '#59EC74' : 'black'}}
-                    onClick={() => handleNavbarClick('tips')}
-                  >TIPS</span>
-                  <span className='me-4'
-                    style={{color: activeSection == 'product' ? '#59EC74' : 'black'}}
-                    onClick={() => handleNavbarClick('product')}
-                  >PRODUCT</span>
-                  <span className='me-4'
-                    style={{color: activeSection == 'contact' ? '#59EC74' : 'black'}}
-                    onClick={() => handleNavbarClick('contact')}
-                  >CONTACT</span>
-                  <span className='me-4'
-                    style={{color: activeSection == 'detailProduct' ? '#59EC74' : 'black'}}
-                    onClick={() => handleNavbarClick('detailProduct')}
-                  >DetProd</span>
-                  <span className='me-4'
-                    style={{color: activeSection == 'detailTips' ? '#59EC74' : 'black'}}
-                    onClick={() => handleNavbarClick('detailTips')}
-                  >DetTips</span> */}
-          <NavLink to="/home" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>HOME</NavLink>
-          <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>ABOUT</NavLink>
-          <NavLink to="/tips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>TIPS</NavLink>
-          <NavLink to="/product" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>PRODUCT</NavLink>
-          <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>CONTACT</NavLink>
-          <NavLink to="/detailProduct" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>DetProd</NavLink>
-          <NavLink to="/detailTips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>DetTips</NavLink>
-
-                </div>
+              <Nav className="me-auto d-flex flex-row align-items-center" style={{ maxHeight: '100px', fontWeight: '500' }}>
+                <NavLink to="/home" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>HOME</NavLink>
+                <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>ABOUT</NavLink>
+                <NavLink to="/tips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>TIPS</NavLink>
+                <NavLink to="/product" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>PRODUCT</NavLink>
+                <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>CONTACT</NavLink>
+                <NavLink to="/detailProduct" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>DetProd</NavLink>
+                <NavLink to="/detailTips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>DetTips</NavLink>
               </Nav>
             </Navbar.Collapse>
             <div className="d-flex gap-3 Raleway">
@@ -389,46 +343,16 @@ function App() {
           </Modal.Body>
         </Modal>
 
-
-        {/* <div className="content">
-          {
-            route == "home" && <Home />
-          }
-          {
-            route == "about" && <About />
-          }
-          {
-            route == "tips" && <Tips />
-          }
-          {
-            route == "product" && <Product />
-          }
-          {
-            route == "contact" && <Contact />
-          }
-          {/* TAMBAH */}
-          {/* {
-            route == "detailProduct" && <DetailProduct />
-          }
-          {
-            route == "detailTips" && <DetailTips />
-          }
-        </div> */}
-
-        <Container fluid>
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/tips" element={<Tips />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/detailProduk" element={<DetailProduct />} />
-            <Route path="/detailTips" element={<DetailTips />} />
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </Container>
-
-
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/tips" element={<Tips />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/detailProduk" element={<DetailProduct />} />
+          <Route path="/detailTips" element={<DetailTips />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
       </Fragment>
     </>
   )

@@ -2,30 +2,43 @@
   margin: 0 auto;
 }
 
+/* Ensure the Nav is flex container and items are row-based */
 .navbar-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  list-style: none;
+  padding-left: 0; /* Remove default padding */
 }
 
+/* Navbar Links */
 .nav-link {
-  color: black;
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #000;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
+/* Active Link Styling */
 .nav-link.active {
-  color: #59EC74;
+  color: #6BF584 !important;
 }
 
+/* Hover Styling */
 .nav-link:hover {
-  color: #39b54a;
+  color: #6BF584;
 }
 
-/* Ensure the navbar is aligned properly */
+/* Ensure the navbar collapses correctly */
 .navbar-collapse {
   flex-grow: 0;
+}
+
+/* Adjust alignment and spacing */
+.navbar-nav .nav-link {
+  margin-right: 1rem; /* Adjust spacing between items */
 }
 
 .Hind {

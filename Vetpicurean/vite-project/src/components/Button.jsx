@@ -30,6 +30,9 @@ export function ButtonPrimary({ children, onClick, style }) {
               border-color: #6BF584;
               background-color: #6BF584; 
             }
+          .btn-primary-custom:not(:hover) {
+            color: #000000;
+          }              
           `
         }
       </style>

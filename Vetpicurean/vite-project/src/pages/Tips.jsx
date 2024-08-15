@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import '../App.css'
 
 import testi from '../components/testi';
-
+import blogs from '../components/blog';
 
 import arrow from '../assets/arrow.png'
 import paw1 from '../assets/paw1.png'
@@ -19,6 +19,7 @@ import tel from '../assets/telephone.png'
 import loc from '../assets/loc.png'
 import email from '../assets/email.png'
 import tipspic from '../assets/pictips.png'
+// import blogs from '../components/blog';
 
 const Tips = () => {
   const settingss = {
@@ -46,45 +47,38 @@ const Tips = () => {
         </div>
 
         <div className="tips d-flex flex-column align-items-center">
-          <div className="cards mb-5">
+          {blogs.map((blog) => (
+            <Card key={blog.id} className='mb-5 cards'>
+              <div className="row g-0">
+                <div className="col-md-3">
+                  <img src={tipspic} alt="" className="img-fluid rounded-start ms-5"/>
+                </div>
+                <div className="col-md-9">
+                  <div className="card-body pt-5 pb-5 pe-5">
+                    <h3 style={{textTransform: 'uppercase'}}>{blog.title}</h3>
+                    <p className="mt-4">{blog.description1}</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          ))}
+          {/* <div className="cards mb-5">
             <div className="row g-0">
               <div className="col-md-3">
                 <img src={tipspic} alt="" className="img-fluid rounded-start ms-5"/>
               </div>
               <div className="col-md-9">
                 <div className="card-body pt-5 pb-5 pe-5">
-                  <h3 style={{textTransform: 'uppercase'}}>Top Tips for Choosing the Right Supplements for Your Pet</h3>
-                  <p className="mt-4">Ensuring your pet receives the right nutrients is crucial for their overall health and happiness. With so many options available, it can be overwhelming to decide which supplements are best for your furry friend. Here are some tips to help you choose the right supplements, and we'll highlight some great options from Vetpicurean's Chubby Gummy range that you might find helpful.</p>
+                  {blog.map(item => (
+                    <div key={item.id} className='mb-4'>
+                      <h3 style={{textTransform: 'uppercase'}}>{item.title}</h3>
+                      <p className="mt-4">{item.description1}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
-          <div className="cards mb-5">
-            <div className="row g-0">
-              <div className="col-md-3">
-                <img src={tipspic} alt="" className="img-fluid rounded-start ms-5"/>
-              </div>
-              <div className="col-md-9">
-                <div className="card-body pt-5 pb-5 pe-5">
-                  <h3 style={{textTransform: 'uppercase'}}>Top Tips for Choosing the Right Supplements for Your Pet</h3>
-                  <p className="mt-4">Ensuring your pet receives the right nutrients is crucial for their overall health and happiness. With so many options available, it can be overwhelming to decide which supplements are best for your furry friend. Here are some tips to help you choose the right supplements, and we'll highlight some great options from Vetpicurean's Chubby Gummy range that you might find helpful.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="cards mb-5">
-            <div className="row g-0">
-              <div className="col-md-3">
-                <img src={tipspic} alt="" className="img-fluid rounded-start ms-5"/>
-              </div>
-              <div className="col-md-9">
-                <div className="card-body pt-5 pb-5 pe-5">
-                  <h3 style={{textTransform: 'uppercase'}}>Top Tips for Choosing the Right Supplements for Your Pet</h3>
-                  <p className="mt-4">Ensuring your pet receives the right nutrients is crucial for their overall health and happiness. With so many options available, it can be overwhelming to decide which supplements are best for your furry friend. Here are some tips to help you choose the right supplements, and we'll highlight some great options from Vetpicurean's Chubby Gummy range that you might find helpful.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div> */}
         </div>
 
         {/* WHY CHOOSE US */}
