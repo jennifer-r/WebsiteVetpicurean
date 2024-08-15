@@ -62,23 +62,6 @@ const Tips = () => {
               </div>
             </Card>
           ))}
-          {/* <div className="cards mb-5">
-            <div className="row g-0">
-              <div className="col-md-3">
-                <img src={tipspic} alt="" className="img-fluid rounded-start ms-5"/>
-              </div>
-              <div className="col-md-9">
-                <div className="card-body pt-5 pb-5 pe-5">
-                  {blog.map(item => (
-                    <div key={item.id} className='mb-4'>
-                      <h3 style={{textTransform: 'uppercase'}}>{item.title}</h3>
-                      <p className="mt-4">{item.description1}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         {/* WHY CHOOSE US */}

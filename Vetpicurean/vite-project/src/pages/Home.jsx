@@ -7,7 +7,9 @@ import "slick-carousel/slick/slick-theme.css";
 import '../App.css'
 
 import products from '../components/product';
-import testi from '../components/testi.js'
+import testi from '../components/testi'
+import blogs from '../components/blog'
+
 
 import arrow from '../assets/arrow.png'
 import paw1 from '../assets/paw1.png'
@@ -19,7 +21,7 @@ import bgCare from '../assets/bgcare.png'
 import paw2 from '../assets/paw2.png'
 import bone1 from '../assets/bone1.png'
 import asset from '../assets/asset.png'
-import cat from '../assets/cat.png'
+import arrowMore from '../assets/arrowMore.png'
 import product from '../assets/product.png'
 import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
@@ -120,26 +122,28 @@ const Home = () => {
         <img src={paw1} alt="" className='paw'/>
 
 
-        {/* SECTION */}
+        {/* SECTION TIPS */}
         <div className="d-flex align-items-center" style={{marginTop: '15%'}}>
-          <div className="col-6">
-            <div className="d-flex align-items-ceter position-relative">
-              <img src={cat} alt="" style={{ width: '55%', position: 'absolute', top: '-200px' }} />
-              <div className="caption">
-                <h3 className='article'>LEARN HOW TO <br /> CARE PET'S</h3>
-                <p className='link mb-0' onClick={handleMoreDetailClick}>More Details</p>
-              </div>
+          <div className="col-12">
+            <h2 className='mb-5 text-center'>BLOG</h2>
+            <div className="d-flex flex-wrap justify-content-between">
+              {blogs.slice(0, 4).map((blog) => (
+                <div key={blog.id} className="mb-4" style={{ width: '22%', marginTop: blog.id === 2 || blog.id === 4 ? '40px' : '0' }}>
+                  <img src={blog.src} alt="" className='img-bodys p-0' style={{borderRadius: '20%', height: '55%'}}/>
+                  <div className="card-body">
+                    <h6 className="card-title mt-3">EPS {blog.id} - {blog.title}</h6>
+                    <div className="mt-4 d-flex align-items-center">
+                      <div className="p-1" onClick={handleMoreDetailClick} style={{borderRadius: '100%', backgroundColor: '#397344', width: '40px', height: '40px'}}>
+                        <img src={arrowMore} alt="" style={{width: '20px', marginLeft: '5px', marginTop:'5px'}}/>
+                      </div>
+                      <p className='mb-0 ms-3'>More Details</p>
+                    </div>
+                    
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
-          <div className="col-6">
-            <div className="d-flex align-items-ceter position-relative">
-              <img src={product} alt="" style={{ width: '30%', position: 'absolute', top: '-85px', left: '60px' }} />
-              <div className="caption" style={{marginLeft: '30%'}}>
-                <h3 className='article'>BASIC NUTRITION <br /> CHUBBY GUMMY</h3>
-                <p className='link mb-0' onClick={handleShopNowClick}>Shop Now</p>
-              </div>
-            </div>
-          </div>
+          </div> 
         </div>
 
         <div className="d-flex justify-content-center" style={{marginTop: '7rem', gap: '30%'}}>

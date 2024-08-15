@@ -1,6 +1,7 @@
 const blogs = [
   {
     id : 1,
+    src: "https://i.ibb.co.com/0VRGJvM/IMG-40255.jpg",
     title : "The Importance of Pet Supplements: Enhancing Your Pet's Health and Well-being",
     description1 : 
     "Pet supplements play a crucial role in supporting the health and well-being of our beloved animals. Even with a balanced diet, pets may not always receive all the necessary nutrients they need. Supplements, such as vitamins, minerals, and omega fatty acids, can help fill these nutritional gaps, ensuring that pets maintain optimal health. Additionally, specific supplements, like glucosamine for joint health or probiotics for digestion, can address particular health concerns, improving your pet's quality of life.",
@@ -9,6 +10,7 @@ const blogs = [
   },
   {
     id : 2,
+    src: "https://i.ibb.co.com/TcwNv81/IMG-02800.jpg",
     title : "How to Choose the Right Supplement for Your Pet: A Comprehensive Guide",
     description1 : 
     "Choosing the right supplement for your pet can be a daunting task, given the vast array of options available on the market. To start, it’s essential to identify your pet’s specific needs. Are they aging and in need of joint support, or perhaps they have a dull coat that could benefit from omega fatty acids? Understanding your pet’s health concerns will help narrow down the supplement options. Additionally, always consult with your veterinarian before introducing any new supplement, as they can provide valuable insights into what would be most beneficial for your pet’s unique health profile.",
@@ -17,6 +19,7 @@ const blogs = [
   },
   {
     id : 3,
+    src: "https://i.ibb.co.com/PzhSF5H/IMG-06466.jpg",
     title : "The Essential Guide to Pet Supplements: What Every Pet Owner Should Know",
     description1 : 
     "Pet supplements have become an increasingly popular way for pet owners to support their furry friends' health. From multivitamins to joint support, supplements can help address specific health concerns that might not be fully covered by diet alone. For example, Omega-3 fatty acids can improve skin and coat condition, while glucosamine and chondroitin are commonly used to support joint health in aging pets. However, it's important to understand that supplements are not a one-size-fits-all solution. Each pet has unique needs, and what works for one might not be suitable for another.",
@@ -25,6 +28,7 @@ const blogs = [
   },
   {
     id : 4,
+    src: "https://i.ibb.co.com/qrmRXgh/2023-0122-130613000.jpg",
     title : "Understanding Pet Supplements: Benefits Beyond the Basics",
     description1 : 
     "Pet supplements are becoming an increasingly popular way to support the health and well-being of our furry friends. While a balanced diet provides essential nutrients, certain supplements can offer additional benefits that go beyond basic nutrition. For example, supplements like glucosamine and chondroitin can support joint health, particularly in older pets, helping to reduce pain and improve mobility. Omega-3 fatty acids, commonly found in fish oil supplements, can enhance skin and coat condition, while also supporting cardiovascular health.",
