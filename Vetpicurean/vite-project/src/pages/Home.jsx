@@ -22,7 +22,7 @@ import paw2 from '../assets/paw2.png'
 import bone1 from '../assets/bone1.png'
 import asset from '../assets/asset.png'
 import arrowMore from '../assets/arrowMore.png'
-import product from '../assets/product.png'
+// import product from '../assets/product.png'
 import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
 import loc from '../assets/loc.png'
@@ -52,9 +52,9 @@ const Home = () => {
     arrows: false          
   };
 
-  const handleShopNowClick = () => {
-    window.location.href = 'https://shopee.co.id/vetpicureanofficial?entryPoint=ShopBySearch&searchKeyword=vetpicurean&is_from_login=true';
-  };
+  // const handleShopNowClick = () => {
+  //   window.location.href = 'https://shopee.co.id/vetpicureanofficial?entryPoint=ShopBySearch&searchKeyword=vetpicurean&is_from_login=true';
+  // };
 
   const handleMoreDetailClick = () => {
     navigate('/tips')
@@ -65,13 +65,13 @@ const Home = () => {
 
       <div className="container">
         <div className="jumbotron jumbo text-center mt-4">
-          <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
+          <h1 className='Raleway'>GIVE YOUR ANIMAL THE BEST</h1>
           <div className="d-flex title Raleway">
             <img src={arrow} alt="" className='arrow' />
-            <div className='subtitle'>FOR YOUR ANIMAL</div>
+            <div className='subtitle'>SUPPLEMENT IN THE WORLD</div>
             <img src={paw1} alt="" className='paw1' />
           </div>
-          <p className='Raleway '>
+          <p className='Rimouski '>
             We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet&apos;s  health needs
           </p>
 
@@ -123,7 +123,7 @@ const Home = () => {
 
 
         {/* SECTION TIPS */}
-        <div className="d-flex align-items-center" style={{marginTop: '15%'}}>
+        <div className="text-center" style={{marginTop: '15%'}}>
           <div className="col-12">
             <h2 className='mb-5 text-center'>BLOG</h2>
             <div className="d-flex flex-wrap justify-content-between">
@@ -131,19 +131,19 @@ const Home = () => {
                 <div key={blog.id} className="mb-4" style={{ width: '22%', marginTop: blog.id === 2 || blog.id === 4 ? '40px' : '0' }}>
                   <img src={blog.src} alt="" className='img-bodys p-0' style={{borderRadius: '20%', height: '55%'}}/>
                   <div className="card-body">
-                    <h6 className="card-title mt-3">EPS {blog.id} - {blog.title}</h6>
+                    <h6 className="text-start mt-3">EPS {blog.id} - {blog.title}</h6>
                     <div className="mt-4 d-flex align-items-center">
                       <div className="p-1" onClick={handleMoreDetailClick} style={{borderRadius: '100%', backgroundColor: '#397344', width: '40px', height: '40px'}}>
-                        <img src={arrowMore} alt="" style={{width: '20px', marginLeft: '5px', marginTop:'5px'}}/>
+                        <img src={arrowMore} alt="" style={{width: '20px'}}/>
                       </div>
                       <p className='mb-0 ms-3'>More Details</p>
-                    </div>
-                    
+                    </div>                  
                   </div>
                 </div>
               ))}
             </div>
           </div> 
+          <button className='moreBlogs p-2'>MORE BLOGS</button>
         </div>
 
         <div className="d-flex justify-content-center" style={{marginTop: '7rem', gap: '30%'}}>
@@ -202,7 +202,7 @@ const Home = () => {
               <div className="more-info">
                 <div className="d-flex align-items-center mt-3">
                   <img src={tel} alt="" className='info'/>
-                  <p className='Hind'>081330077377 (dr.Yenni)</p>
+                  <p className='Hind'>087785098424</p>
                 </div>
                 <div className="d-flex align-items-center mt-3">
                   <img src={email} alt="" className='info'/>

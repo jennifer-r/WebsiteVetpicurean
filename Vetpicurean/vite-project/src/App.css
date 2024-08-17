@@ -49,6 +49,30 @@
   font-family: 'Raleway', cursive;
 }
 
+.Rimouski {
+  font-family: 'RimouskiSb', cursive;
+}
+
+.span {
+  font-family: "Courgette Regular", cursive;
+  color: #6BF584;
+  font-style: italic;
+  font-size: 55px;
+  font-weight: 900;
+}
+
+.moreBlogs {
+  width: 30%;
+  font-weight: bold;
+  border-color: #4CAF50;
+  border-width: 2px;
+  color: #4CAF50;;
+  background-color:#FFFFFF;
+  border-radius: 10px;
+  font-size: 18px;
+  letter-spacing: 5px;
+}
+
 h1 {
   font-size: 70px;
   color: #397344;
@@ -108,8 +132,8 @@ h2 {
 }
 
 .section-choose {
-  background-color: #B1E697;
-  border-color: #B1E697;
+  background-color: #8eb98c;
+  border-color: #8eb98c;
   padding: 3rem 0px;
   z-index: 1 ;
   border-radius: 20px;
@@ -485,12 +509,12 @@ ul {
 .product {
   padding: 50px;
   margin-top: 4rem;
-  background-color: #9EE07D;
+  background-color: #8eb98c;
   border-radius: 20px;
 }
 
 .title-product {
-  background-color: #397344;
+  background-color: #7da96a;
   color: white;
   margin: 0 auto;
   width: 80%;

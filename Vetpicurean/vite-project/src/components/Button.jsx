@@ -19,16 +19,16 @@ export function ButtonPrimary({ children, onClick, style }) {
             .btn-primary-custom {
               width: 110px;
               font-weight: bold;
-              border-color: '#6BF584'
-              color: '#6BF584'
-              background-color: '#FFFFFF'
+              border-color: '#8eb98c';
+              color: '#6BF584';
+              background-color: '#8eb98c';
               transition: 0.3s;
               text-decoration: none;
             }
             .btn-primary-custom:hover {
               color: #FFFFFF;
-              border-color: #6BF584;
-              background-color: #6BF584; 
+              border-color: #8eb98c;
+              background-color: #8eb98c; 
             }
           .btn-primary-custom:not(:hover) {
             color: #000000;

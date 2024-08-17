@@ -147,7 +147,7 @@ const About = () => {
               <div className="more-info">
                 <div className="d-flex align-items-center mt-3">
                   <img src={tel} alt="" className='info'/>
-                    <p className='Hind'>081330077377 (dr.Yenni)</p>
+                    <p className='Hind'>087785098424</p>
                 </div>
                 <div className="d-flex align-items-center mt-3">
                   <img src={email} alt="" className='info'/>

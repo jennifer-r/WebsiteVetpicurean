@@ -31,6 +31,7 @@ function App() {
   const [gender, setGender] = useState('')
   const [numberOfPets, setNumberOfPets] = useState('')
   const [expense, setExpense] = useState('')
+  const [petDescription, setPetDescription] = useState('')
 
   const handleCloseLogin = () => setShowLogin(false)
   const handleShowLogin = () => setShowLogin(true)
@@ -141,7 +142,8 @@ function App() {
         gender,
         numberOfPets,
         age: selectedOption,
-        expense
+        expense,
+        petDescription
       }, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -252,11 +254,11 @@ function App() {
           <Modal.Header closeButton />
           <Modal.Body className='modals' style={{textAlign: 'center'}}>
             <div className="modal-title">
-              <h3 style={{textTransform: 'uppercase', textAlign: 'center', marginBottom:0}}>Pet Biodata</h3>
-              <p style={{color:'gray'}}>Answer a questions</p>
+              <h3 style={{textTransform: 'uppercase', textAlign: 'center', marginBottom:0}}>OPEN UP !</h3>
+              <p style={{color:'gray'}}>Tell us more about you</p>
             </div>
             <div className='titles p-5' style={{textAlign: 'left'}}>
-              <label>Pet Type</label>
+              <label>Siapa aja Teman Setia Kamu</label>
               <div className="d-flex gap-4 mt-3 justify-content-between">
               {['DOG', 'CAT', 'RABBIT', 'OTHER'].map((pet) => (
               <ButtonPrimary
@@ -275,7 +277,7 @@ function App() {
               ))}
               </div>
 
-              <label className='mt-4'>Gender</label>
+              <label className='mt-4'>Paling banyak gender apa sih</label>
               <div className="d-flex mt-3">
                 <div className="form-check Raleway" style={{color: 'gray'}}>
                   <input type="radio" className="form-check-input" id="maleRadio" name="gender" value="Male" checked={gender === 'Male'} onChange={(e) => setGender(e.target.value)}/>Male
@@ -288,7 +290,7 @@ function App() {
               </div>
 
 
-              <label className='mt-4'>Number of pet</label>
+              <label className='mt-4'>Jumlah Anabul Kamu</label>
               <div className="d-flex mt-3">
                 <div className="form-check Raleway" style={{color: 'gray'}}>
                   <input type="radio" className="form-check-input" id="lesThan3Pets" name="numberOfPets" value="< 3"  checked={numberOfPets === '< 3'} onChange={(e) => setNumberOfPets(e.target.value)}/> less than 3 pets
@@ -304,7 +306,7 @@ function App() {
                 </div>
               </div>
 
-              <label className='mt-4'>Age</label>
+              <label className='mt-4'>Umur anabul kamu paling senior</label>
               <Dropdown className="mt-3 w-100">
                 <Dropdown.Toggle
                   className="choose Raleway"
@@ -335,11 +337,14 @@ function App() {
                 </Dropdown.Menu>
               </Dropdown>
               
-              <label className='mt-4'>Expense (Monthly)</label>
+              <label className='mt-4'>Berapa banyak sih kebutuhan anabul dalam sebulan</label>
               <input type="text" className="form-control mt-3" placeholder='Expense (Monthly)' value={expense} onChange={(e) => setExpense(e.target.value)}/>
+
+              <label className='mt-4'>Sekilas tentang hewan kesayangan kamu</label>
+              <textarea className='form-control mt-3' placeholder='Tell about your pet...' value={petDescription} onChange={(e) => setPetDescription(e.target.value)} style={{height: '150px'}}></textarea>
             </div>
 
-            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleSaveBio}>Register</button>
+            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleSaveBio}>JOIN CHUBBY GUMMY GANK</button>
           </Modal.Body>
         </Modal>
 

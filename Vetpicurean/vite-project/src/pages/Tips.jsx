@@ -135,7 +135,7 @@ const Tips = () => {
               <img src={logo} alt=""  style={{ width: "50%" }} />
                 <div className="d-flex align-items-center mt-3">
                   <img src={tel} alt="" className='info'/>
-                    <p className='Hind'>081330077377 (dr.Yenni)</p>
+                    <p className='Hind'>087785098424</p>
                 </div>
                 <div className="d-flex align-items-center mt-3">
                   <img src={email} alt="" className='info'/>
