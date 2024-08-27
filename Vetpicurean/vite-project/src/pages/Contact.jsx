@@ -8,20 +8,70 @@ import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
 import loc from '../assets/loc.png'
 import email from '../assets/email.png'
+import { useState, useEffect } from 'react'
 
 const Contact = () => {
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    request: ''
+  })
+
+  const [userId, setUserId] = useState('')
+
+  useEffect(()=>{
+    const fetchUserId = async () => {
+      const storedUserId = localStorage.getItem('userId');
+      if(storedUserId){
+        setUserId(storedUserId)
+      }
+    }
+    fetchUserId()
+  }, [])
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try{
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({...formData, userId})
+      });
+      if(response.ok) {
+        alert('Message sent successfully!');
+        setFormData({name: '', email: '', subject: '', request: ''})
+      }else {
+        alert('Failed to send message')
+      }
+    }catch(err){
+      console.error('Error : ', err);
+      alert('Error sending message')
+    }
+  }
 
   return(
     <div className="overflow-hidden">
       <div className="container">
         <div className="jumbotron jumbo text-center mt-4">
-          <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
+          <h1 className='Raleway'>GIVE YOUR ANIMAL THE BEST</h1>
           <div className="d-flex title Raleway">
             <img src={arrow} alt="" className='arrow'/>
-            <div className='subtitle'>FOR YOUR ANIMAL</div>
+            <div className='subtitle'>SUPPLEMENT IN THE WORLD</div>
             <img src={paw1} alt="" className='paw1'/>
           </div>
-          <p className='Raleway '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
+          <p className='Rimouski '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
         </div>
 
         <h2 className='text-center contact'>CONTACT US</h2>
@@ -53,36 +103,38 @@ const Contact = () => {
 
           </div>
           <div className="col-6 ms-5 contacts">
+            <form onSubmit={handleSubmit}>
             <div className="titles">
               <div className="d-flex align-items-center">
                 <label htmlFor="exampleInputName1">Your Name</label>
                 <img src={paw2} alt="" className='paww ms-3' style={{width: '30px', height: '30px'}}/>
               </div>
-              <input type="text" className="form-control mt-3" id="exampleInputName1" aria-describedby="nameHelp"/>
+              <input type="text" className="form-control mt-3" id="exampleInputName1" aria-describedby="nameHelp" name='name' value={formData.name} onChange={handleChange}/>
             </div>
             <div className="titles">
               <div className="d-flex align-items-center">
                 <label htmlFor="exampleInputEmail1" className='mt-4'>Your Email</label>
                 <img src={paw2} alt="" className='paww ms-3' style={{width: '30px', height: '30px'}}/>
               </div>
-              <input type="text" className="form-control mt-3" id="exampleInputEmail1" aria-describedby="nameHelp"/>
+              <input type="text" className="form-control mt-3" id="exampleInputEmail1" aria-describedby="nameHelp" name='email' value={formData.email} onChange={handleChange}/>
             </div>
             <div className="titles">
               <div className="d-flex align-items-center">
                 <label htmlFor="exampleInputSubject1" className='mt-4'>Your Subject</label>
                 <img src={paw2} alt="" className='paww ms-3' style={{width: '30px', height: '30px'}}/>
               </div>
-              <input type="text" className="form-control mt-3" id="exampleInputSubject1" aria-describedby="nameHelp"/>
+              <input type="text" className="form-control mt-3" id="exampleInputSubject1" aria-describedby="nameHelp" name='subject' value={formData.subject} onChange={handleChange}/>
             </div>
             <div className="titles">
               <div className="d-flex align-items-center">
                 <label htmlFor="exampleInputRequest1" className='mt-4'>Your Request</label>
                 <img src={paw2} alt="" className='paww ms-3' style={{width: '30px', height: '30px'}}/>
               </div>
-              <textarea className="form-control mt-3" id="floatingTextarea" style={{height: '200px'}}></textarea>
+              <textarea className="form-control mt-3" id="floatingTextarea" name='request' value={formData.request} onChange={handleChange} style={{height: '200px'}}></textarea>
             </div>
 
             <button className='send mt-4'>SEND MESSANGE</button>
+            </form>
           </div>
         </div>
         <div className="" style={{position: 'relative', overflow: 'hidden'}}>

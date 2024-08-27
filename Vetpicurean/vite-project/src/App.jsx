@@ -11,6 +11,7 @@ import Product from './pages/Product'
 import Contact from './pages/Contact'
 // TAMBAHAN
 import DetailProduct from './pages/DetailProduct'
+// import DetailProduct from './pages/DetailProduct'
 import DetailTips from './pages/DetailTips'
 
 import { ButtonPrimary, ButtonSecondary } from "./components/Button";
@@ -180,13 +181,12 @@ function App() {
             <img src={logo} alt="" style={{ width: "15%" }} />
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto d-flex flex-row align-items-center" style={{ maxHeight: '100px', fontWeight: '500' }}>
+              <Nav className="me-auto d-flex flex-row align-items-center Rimouski" style={{ maxHeight: '100px', fontWeight: '500' }}>
                 <NavLink to="/home" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>HOME</NavLink>
                 <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>ABOUT</NavLink>
                 <NavLink to="/tips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>TIPS</NavLink>
                 <NavLink to="/product" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>PRODUCT</NavLink>
                 <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>CONTACT</NavLink>
-                <NavLink to="/detailProduct" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>DetProd</NavLink>
                 <NavLink to="/detailTips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>DetTips</NavLink>
               </Nav>
             </Navbar.Collapse>
@@ -354,8 +354,7 @@ function App() {
           <Route path="/tips" element={<Tips />} />
           <Route path="/product" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/detailProduk" element={<DetailProduct />} />
-          <Route path="/detailTips" element={<DetailTips />} />
+          <Route path="/product/:id" element={<DetailProduct />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Fragment>

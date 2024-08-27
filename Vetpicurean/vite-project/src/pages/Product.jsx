@@ -1,11 +1,11 @@
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useNavigate } from 'react-router-dom';
 import '../App.css'
 
 import products from '../components/product';
 import testi from '../components/testi';
-
 
 import paw2 from '../assets/paw2.png'
 import bone1 from '../assets/bone1.png'
@@ -19,6 +19,8 @@ import petsupplement from '../assets/petsupplement.png'
 import petskincare from '../assets/petskincare.png'
 
 const Product = () => {
+  const navigate = useNavigate()
+  
   const settings = {
     dots: true,
     speed: 1000,
@@ -41,17 +43,21 @@ const Product = () => {
     arrows: false          
   };
 
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`)
+  }
+
   return(
     <div className="overflow-hidden">
       <div className="container">
         <div className="jumbotron jumbo text-center mt-4">
-          <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
+          <h1 className='Raleway'>GIVE YOUR ANIMAL THE BEST</h1>
           <div className="d-flex title Raleway">
             <img src={arrow} alt="" className='arrow' />
-            <div className='subtitle'>FOR YOUR ANIMAL</div>
+            <div className='subtitle'>SUPPLEMENT IN THE WORLD</div>
             <img src={paw1} alt="" className='paw1' />
           </div>
-          <p className='Raleway '>
+          <p className='Rimouski '>
             We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet&apos;s  health needs
           </p>
         </div>
@@ -82,7 +88,7 @@ const Product = () => {
           <div className="product shadow">
             <Slider {...settings}>
               {products.map((item) => (
-                <div key={item.id}>
+                <div key={item.id} onClick={() => handleProductClick(item.id)}>
                   <div className="img-bodys">
                     <img src={item.src} alt={item.alt} />
                     <div className='d-flex align-items-center justify-content-center title-product mb-4'>

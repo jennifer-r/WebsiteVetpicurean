@@ -8,7 +8,6 @@ import '../App.css'
 
 import products from '../components/product';
 import testi from '../components/testi'
-import blogs from '../components/blog'
 
 
 import arrow from '../assets/arrow.png'
@@ -21,7 +20,8 @@ import bgCare from '../assets/bgcare.png'
 import paw2 from '../assets/paw2.png'
 import bone1 from '../assets/bone1.png'
 import asset from '../assets/asset.png'
-import arrowMore from '../assets/arrowMore.png'
+import cat from '../assets/cat.png'
+import product from '../assets/product.png'
 // import product from '../assets/product.png'
 import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
@@ -29,7 +29,7 @@ import loc from '../assets/loc.png'
 import email from '../assets/email.png'
 
 const Home = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const settings = {
     dots: true,
@@ -56,9 +56,9 @@ const Home = () => {
   //   window.location.href = 'https://shopee.co.id/vetpicureanofficial?entryPoint=ShopBySearch&searchKeyword=vetpicurean&is_from_login=true';
   // };
 
-  const handleMoreDetailClick = () => {
-    navigate('/tips')
-  }
+  // const handleMoreDetailClick = () => {
+  //   navigate('/tips')
+  // }
 
   return (
     <div className="overflow-hidden">
@@ -121,8 +121,29 @@ const Home = () => {
         </div>
         <img src={paw1} alt="" className='paw'/>
 
+        {/* SECTION */}
+        <div className="d-flex align-items-center" style={{marginTop: '15%'}}>
+          <div className="col-6">
+            <div className="d-flex align-items-ceter position-relative">
+              <img src={cat} alt="" style={{ width: '55%', position: 'absolute', top: '-200px' }} />
+              <div className="caption">
+                <h3 className='article'>LEARN HOW TO <br /> CARE PET'S</h3>
+                <p className='link mb-0'>More Details</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-6">
+            <div className="d-flex align-items-ceter position-relative">
+              <img src={product} alt="" style={{ width: '50%', position: 'absolute', top: '-280px', left: '20px' }} />
+              <div className="caption" style={{marginLeft: '30%'}}>
+                <h3 className='article'>BASIC NUTRITION <br /> CHUBBY GUMMY</h3>
+                <p className='link mb-0'>Shop Now</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        {/* SECTION TIPS */}
+        {/* SECTION TIPS
         <div className="text-center" style={{marginTop: '15%'}}>
           <div className="col-12">
             <h2 className='mb-5 text-center'>BLOG</h2>
@@ -136,15 +157,15 @@ const Home = () => {
                       <div className="p-1" onClick={handleMoreDetailClick} style={{borderRadius: '100%', backgroundColor: '#397344', width: '40px', height: '40px'}}>
                         <img src={arrowMore} alt="" style={{width: '20px'}}/>
                       </div>
-                      <p className='mb-0 ms-3'>More Details</p>
+                      <p className='Rimouski mb-0 ms-3' style={{letterSpacing: '2px', fontSize: '14px'}}>More Details</p>
                     </div>                  
                   </div>
                 </div>
               ))}
             </div>
           </div> 
-          <button className='moreBlogs p-2'>MORE BLOGS</button>
-        </div>
+          <button className='moreBlogs bold p-2'>MORE BLOGS</button>
+        </div> */}
 
         <div className="d-flex justify-content-center" style={{marginTop: '7rem', gap: '30%'}}>
           <img src={paw2} style={{width:"60px", transform:"rotate(-20deg)"}} alt=""/>
@@ -165,7 +186,7 @@ const Home = () => {
                   <div className="img-bodys">
                     <img src={item.src} alt={item.alt} />
                     <div className='d-flex align-items-center justify-content-center title-product mb-4'>
-                      <p className='Raleway mb-0'>{item.title}</p>
+                      <p className='Rimouski mb-0' style={{letterSpacing: '1px'}}>{item.title}</p>
                     </div>
                   </div>
                 </div>
@@ -202,24 +223,24 @@ const Home = () => {
               <div className="more-info">
                 <div className="d-flex align-items-center mt-3">
                   <img src={tel} alt="" className='info'/>
-                  <p className='Hind'>087785098424</p>
+                  <p className='Rimouski'>087785098424</p>
                 </div>
                 <div className="d-flex align-items-center mt-3">
                   <img src={email} alt="" className='info'/>
-                  <p className='Hind'>hello@vetpicurean.com</p>
+                  <p className='Rimouski'>hello@vetpicurean.com</p>
                 </div>
                 <div className="d-flex align-items-center mt-3">
                   <img src={loc} alt="" className='info'/>
-                  <p className='Hind'>Diamond Regency E7, Kelurahan Keputih, Kecamatan Sukolilo, Surabaya</p>
+                  <p className='Rimouski'>Diamond Regency E7, Kelurahan Keputih, Kecamatan Sukolilo, Surabaya</p>
                 </div>
               </div>
             </div>
             <div className="col-4 ps-5">
               <h3 className='mb-0 Raleway mt-4'>Quick Links</h3>
-              <p className='Hind mt-4'>About</p>
-              <p className='Hind mt-4'>Tips</p>
-              <p className='Hind mt-4'>Product</p>
-              <p className='Hind mt-4'>Testimonial</p>
+              <p className='Rimouski mt-4'>About</p>
+              <p className='Rimouski mt-4'>Tips</p>
+              <p className='Rimouski mt-4'>Product</p>
+              <p className='Rimouski mt-4'>Testimonial</p>
             </div>
             <div className="col-4 ps-5">
               <h3 className='mb-0 Raleway mt-4'>Subscribe</h3>
@@ -229,13 +250,13 @@ const Home = () => {
                   <img src={paw2} alt="" className='sub-paw'/>
                 </button>
               </div> 
-              <p className='mt-4'>Subscribe to more information</p>          
+              <p className='mt-4 Rimouski'>Subscribe to more information</p>          
             </div>
           </div>
 
           <hr />
 
-          <p className='mt-4 text-center'>@2024 vetpicurean | All Right Reserved</p>
+          <p className='mt-4 text-center Rimouski'>@2024 vetpicurean | All Right Reserved</p>
         </div>
       </div>
     </div>

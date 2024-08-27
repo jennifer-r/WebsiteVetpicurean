@@ -37,13 +37,13 @@ const Tips = () => {
     <div className="overflow-hidden">
       <div className="container">
         <div className="jumbotron jumbo text-center mt-4">
-          <h1 className='Raleway'>BEST SUPPLEMENT CHOICES</h1>
+          <h1 className='Raleway'>GIVE YOUR ANIMAL THE BEST</h1>
           <div className="d-flex title Raleway">
             <img src={arrow} alt="" className='arrow'/>
-            <div className='subtitle'>FOR YOUR ANIMAL</div>
+            <div className='subtitle'>SUPPLEMENT IN THE WORLD</div>
             <img src={paw1} alt="" className='paw1'/>
           </div>
-          <p className='Raleway '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
+          <p className='Rimouski '>We provide a complete collection of high-quality supplements and vitamins designed specifically to meet your pet's health needs</p>
         </div>
 
         <div className="tips d-flex flex-column align-items-center">
@@ -100,7 +100,7 @@ const Tips = () => {
           </div>
           <div className="col-6">
             <div className="d-flex align-items-ceter position-relative">
-              <img src={product} alt="" style={{ width: '30%', position: 'absolute', top: '-85px', left: '60px' }} />
+              <img src={product} alt="" style={{ width: '50%', position: 'absolute', top: '-280px', left: '20px' }} />
               <div className="caption" style={{marginLeft: '30%'}}>
                 <h3 className='article'>BASIC NUTRITION <br /> CHUBBY GUMMY</h3>
                 <p className='link mb-0'>Shop Now</p>

@@ -23,12 +23,12 @@
 
 /* Active Link Styling */
 .nav-link.active {
-  color: #6BF584 !important;
+  color: #8eb98c !important;
 }
 
 /* Hover Styling */
 .nav-link:hover {
-  color: #6BF584;
+  color: #8eb98c;
 }
 
 /* Ensure the navbar collapses correctly */
@@ -50,7 +50,7 @@
 }
 
 .Rimouski {
-  font-family: 'RimouskiSb', cursive;
+  font-family: 'Rimouski Semibold', cursive;
 }
 
 .span {
@@ -63,7 +63,6 @@
 
 .moreBlogs {
   width: 30%;
-  font-weight: bold;
   border-color: #4CAF50;
   border-width: 2px;
   color: #4CAF50;;
@@ -71,6 +70,7 @@
   border-radius: 10px;
   font-size: 18px;
   letter-spacing: 5px;
+  font-family: 'Rimouski', cursive;
 }
 
 h1 {
@@ -88,6 +88,11 @@ h2 {
   margin-bottom: 0;
   letter-spacing: -1px;
   font-family: 'Raleway', cursive;
+}
+
+h6 {
+  color:#397344;
+  font-weight: bold;
 }
 
 .title {
@@ -184,9 +189,28 @@ h2 {
 }
 
 ul {
-  list-style-image: url('./assets/check.png');
+  list-style: none;
+  padding-left: 0;
   align-self: center;
-  font-weight: bold;
+}
+
+ul li {
+  position: relative; 
+  padding-left: 50px; 
+  margin-bottom: 10px;
+}
+
+ul li::before {
+  content: '';
+  background-image: url('./assets/paw2.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
 }
 
 .caption {
@@ -212,7 +236,7 @@ ul {
 .link {
   text-decoration: underline;
   color: blue;
-  font-family: 'Raleway', cursive;
+  font-family: 'Rimouski Semibold', cursive;
   font-weight: 600;
 }
 
@@ -249,7 +273,7 @@ ul {
 }
 
 .kategori {
-  background-color: #9EE07D;
+  background-color: #8eb98c;
   padding: 25px;
   border-radius: 20px;
   text-align: center;
@@ -429,7 +453,7 @@ ul {
 }
 
 .more-info p {
-  font-size: 25px;
+  font-size: 22px;
   margin-bottom: 0;
   font-weight: bold;
   letter-spacing: 1px;
@@ -593,4 +617,4 @@ strong {
   font-size:large;
 }
 
-/* END DETAIL TIPS */
+

@@ -38,7 +38,7 @@ export function ButtonPrimary({ children, onClick, style }) {
       </style>
       <Button 
         variant="link" 
-        className="btn-primary-custom"
+        className="btn-primary-custom Rimouski"
         onClick={onClick}
         style={style}
       >
@@ -57,21 +57,21 @@ export function ButtonSecondary({ children, onClick }) {
             .btn-secondary-custom {
               width: 110px;
               font-weight: bold;
-              border-color: #6BF584;
+              border-color: #8eb98c;
               color: #FFFFFF;
-              background-color: #6BF584;
+              background-color: #8eb98c;
               transition: 0.3s;
               text-decoration: none;
             }
             .btn-secondary-custom:hover {
-              color: #6BF584;
+              color: #8eb98c;
               background-color: #FFFFFF;
-              border-color: #6BF584;
+              border-color: #8eb98c;
             }
           `
         }
       </style>
-      <Button variant="link" className="btn-secondary-custom" onClick={onClick}>{children}</Button>
+      <Button variant="link" className="btn-secondary-custom Rimouski" onClick={onClick}>{children}</Button>
     </>
   )
 }
