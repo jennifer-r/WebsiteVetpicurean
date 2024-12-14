@@ -49,11 +49,13 @@ const DetailProduct = () => {
                         <hr />
 
                         <h6 className='mb-3'>Komposisi</h6>
-                        <ul>
-                            {currentProduct.komposisi.map((comp, index) => (
-                                <li key={index}>{comp}</li>
-                            ))}
-                        </ul>
+                        <div className="listPaw">
+                            <ul>
+                                {currentProduct.komposisi.map((comp, index) => (
+                                    <li key={index}>{comp}</li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div className="footer">

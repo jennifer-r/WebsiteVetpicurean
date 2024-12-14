@@ -1,4 +1,6 @@
 import { Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,16 +14,40 @@ import paw1 from '../assets/paw1.png'
 import paw2 from '../assets/paw2.png'
 import bone1 from '../assets/bone1.png'
 import asset from '../assets/asset.png'
-import cat from '../assets/cat.png'
+// import cat from '../assets/cat.png'
 import product from '../assets/product.png'
 import logo from '../assets/vetpic.png'
 import tel from '../assets/telephone.png'
 import loc from '../assets/loc.png'
 import email from '../assets/email.png'
 import tipspic from '../assets/pictips.png'
-// import blogs from '../components/blog';
+import { useEffect, useState } from 'react';
 
 const Tips = () => {
+  const navigate = useNavigate();
+  const [showForm, setShowForm] = useState(false)
+  const [user, setUser] = useState(null)
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try{
+        const response = await axios.get('/api/login')
+        setUser({
+          fullName: response.data.fullName,
+          role: response.data.role
+        })
+      } catch (err) {
+        console.error('Error fetching user data:', err)
+      }
+    }
+    fetchUserData()
+  }, [])
+  
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    file: null
+  })
+
   const settingss = {
     dots: true,            
     infinite: true,        
@@ -32,6 +58,61 @@ const Tips = () => {
     autoplaySpeed: 10000,  
     arrows: false          
   };
+
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    })
+  }
+
+  const handleFileChange = (e) => {
+    setFormData({
+      ...formData,
+      file: e.target.files[0]
+    })
+  }
+  
+  const handleTipsClick = (id) => {
+    navigate(`/tips/${id}`)
+  }
+
+  const handleButtonClick = () => {
+    setShowForm(!showForm)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = new FormData()
+    data.append('title', formData.title);
+    data.append('description', formData.description);
+    data.append('file', formData.file)
+
+    try{
+      const response = await axios.post('/api/articles', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      alert('Article saved successfully!')
+      setFormData({
+        title:'',
+        description:'',
+        file:null
+      })
+      setShowForm(false)
+      console.log('Article saved: ', response.data)
+    }catch(error){
+      alert('Error saving article:', error)
+    }
+  }
+
+  const handleShopNowClick = () => {
+    window.location.href = 'https://shopee.co.id/vetpicureanofficial?entryPoint=ShopBySearch&searchKeyword=vetpicurean&is_from_login=true';
+  };
+
 
   return(
     <div className="overflow-hidden">
@@ -48,7 +129,7 @@ const Tips = () => {
 
         <div className="tips d-flex flex-column align-items-center">
           {blogs.map((blog) => (
-            <Card key={blog.id} className='mb-5 cards'>
+            <Card key={blog.id} className='mb-5 cards' onClick={() => handleTipsClick(blog.id)}>
               <div className="row g-0">
                 <div className="col-md-3">
                   <img src={tipspic} alt="" className="img-fluid rounded-start ms-5"/>
@@ -63,9 +144,47 @@ const Tips = () => {
             </Card>
           ))}
         </div>
+        
+        {/* ADD ARTIKEL */}
+        {user?.role === 'admin' && (
+          <div className="ms-5 mb-5">
+            <button className='add mt-4' onClick={handleButtonClick}>ADD ARTICLES</button>
+          </div>
+        )}
+        
+        {/* FORM ADD ARTIKEL */}
+        {showForm && (
+        <div className="ms-5 addArticle">
+          <form encType='multipart/form-data' onSubmit={handleSubmit}>
+            <div className="titles">
+              <div className="d-flex align-items-center">
+                <label htmlFor="exampleInputTitle">TTITLE</label>
+                <img src={paw2} alt="" className='paww ms-3' style={{width: '30px', height: '30px'}}/>
+              </div>
+              <input type="text" className="form-control mt-3" id="exampleInputTitle" aria-describedby="titleHelp" name='title' value={formData.title} onChange={handleInputChange}/>
+            </div>
+            <div className="titles">
+              <div className="d-flex align-items-center">
+                <label htmlFor="exampleInputFile" className='mt-4'>UPLOAD IMAGE</label>
+                <img src={paw2} alt="" className='paww ms-3' style={{width: '30px', height: '30px'}}/>
+              </div>
+              <input type="file" className="form-control mt-3" id="exampleInputFile" aria-describedby="descHelp" name='file' onChange={handleFileChange}/>
+            </div>
+            <div className="titles">
+              <div className="d-flex align-items-center">
+                <label htmlFor="exampleInputDesc" className='mt-4'>DESCRIPTION</label>
+                <img src={paw2} alt="" className='paww ms-3' style={{width: '30px', height: '30px'}}/>
+              </div>
+              <textarea className="form-control mt-3" id="floatingTextarea" name='description' value={formData.description} onChange={handleInputChange} style={{height: '200px'}}></textarea>
+            </div>
+
+            <button className='send mt-4' type='submit'>MAKE ARTICLE</button>
+          </form>
+        </div>
+        )}
 
         {/* WHY CHOOSE US */}
-        <div className="why align-items-center container">
+        <div className="why align-items-center container" style={{marginTop: '200px'}}>
           <Card className='shadow section-choose'>
             <Card.Body style={{ alignContent: 'center' }}>
               <div className="d-flex">
@@ -89,7 +208,7 @@ const Tips = () => {
 
         {/* SECTION */}
         <div className="d-flex align-items-center" style={{marginTop: '15%'}}>
-          <div className="col-6">
+          {/* <div className="col-6">
             <div className="d-flex align-items-ceter position-relative">
               <img src={cat} alt="" style={{ width: '55%', position: 'absolute', top: '-200px' }} />
               <div className="caption">
@@ -97,13 +216,13 @@ const Tips = () => {
                 <p className='link mb-0'>More Details</p>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="col-6">
             <div className="d-flex align-items-ceter position-relative">
               <img src={product} alt="" style={{ width: '50%', position: 'absolute', top: '-280px', left: '20px' }} />
               <div className="caption" style={{marginLeft: '30%'}}>
                 <h3 className='article'>BASIC NUTRITION <br /> CHUBBY GUMMY</h3>
-                <p className='link mb-0'>Shop Now</p>
+                <p className='link mb-0' onClick={() => handleShopNowClick()}>Shop Now</p>
               </div>
             </div>
           </div>
@@ -112,6 +231,7 @@ const Tips = () => {
           <img src={paw2} alt="" className='paww'/>
           <img src={bone1} alt="" className='bone'/>
         </div>
+
 
         {/* TESTIMONIAL */}
         <div className="testimonials-section">

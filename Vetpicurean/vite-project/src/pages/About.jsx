@@ -1,4 +1,5 @@
 import { Card, Carousel } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
@@ -21,6 +22,7 @@ import email from '../assets/email.png'
 import about from '../assets/about.png'
 
 const About = () => {
+  const navigate = useNavigate()
 
   const settings = {
     dots: true,            
@@ -32,6 +34,21 @@ const About = () => {
     autoplaySpeed: 10000,  
     arrows: false          
   };
+
+  
+  
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`)
+  }
+
+  const handleShopNowClick = () => {
+    window.location.href = 'https://shopee.co.id/vetpicureanofficial?entryPoint=ShopBySearch&searchKeyword=vetpicurean&is_from_login=true';
+  };
+
+  const handleMoreDetailClick = () => {
+    navigate('/tips')
+  }
+
 
 
   return(
@@ -58,13 +75,13 @@ const About = () => {
                   <h2>ABOUT US</h2>
                   <p className='Rimouski'>Lorem ipsum odor amet, consectetuer adipiscing elit. Nascetur vulputate sodales nec non quam. Nostra mattis metus tortor neque vivamus. Varius pretium ultricies inceptos elementum proin duis eleifend nec. Vulputate molestie ante class; tincidunt imperdiet massa a. Ullamcorper ultricies imperdiet urna convallis lorem accumsan.</p>
                   <div className="d-flex align-items-center">
-                    <div className="flex-column Rimouski">
+                    <div className="flex-column listPaw Rimouski">
                       <ul>
                         <li className='mb-3'>860 + CUSTOMERS</li>
                         <li className='mb-3'>STATE 2</li>
                         <li>STATE 3</li>
                       </ul>
-                      <button className='more mt-4 Rimouski'>More About Us</button>
+                      {/* <button className='more mt-4 Rimouski'>More About Us</button> */}
                     </div>
                     <img src={paw2} alt="" className='paw2'style={{width: '20%', height: '20%'}}/>
                   </div>
@@ -105,7 +122,7 @@ const About = () => {
               <img src={cat} alt="" style={{ width: '55%', position: 'absolute', top: '-200px' }} />
               <div className="caption">
                 <h3 className='article'>LEARN HOW TO <br /> CARE PET'S</h3>
-                <p className='link mb-0'>More Details</p>
+                <p className='link mb-0' onClick={() => handleMoreDetailClick()}>More Details</p>
               </div>
             </div>
           </div>
@@ -114,7 +131,7 @@ const About = () => {
               <img src={product} alt="" style={{ width: '50%', position: 'absolute', top: '-280px', left: '20px' }} />
               <div className="caption" style={{marginLeft: '30%'}}>
                 <h3 className='article'>BASIC NUTRITION <br /> CHUBBY GUMMY</h3>
-                <p className='link mb-0'>Shop Now</p>
+                <p className='link mb-0' onClick={() => handleShopNowClick()}>Shop Now</p>
               </div>
             </div>
           </div>

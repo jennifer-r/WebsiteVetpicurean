@@ -29,7 +29,7 @@ import loc from '../assets/loc.png'
 import email from '../assets/email.png'
 
 const Home = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const settings = {
     dots: true,
@@ -52,13 +52,18 @@ const Home = () => {
     arrows: false          
   };
 
-  // const handleShopNowClick = () => {
-  //   window.location.href = 'https://shopee.co.id/vetpicureanofficial?entryPoint=ShopBySearch&searchKeyword=vetpicurean&is_from_login=true';
-  // };
+  
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`)
+  }
 
-  // const handleMoreDetailClick = () => {
-  //   navigate('/tips')
-  // }
+  const handleShopNowClick = () => {
+    window.location.href = 'https://shopee.co.id/vetpicureanofficial?entryPoint=ShopBySearch&searchKeyword=vetpicurean&is_from_login=true';
+  };
+
+  const handleMoreDetailClick = () => {
+    navigate('/tips')
+  }
 
   return (
     <div className="overflow-hidden">
@@ -128,7 +133,7 @@ const Home = () => {
               <img src={cat} alt="" style={{ width: '55%', position: 'absolute', top: '-200px' }} />
               <div className="caption">
                 <h3 className='article'>LEARN HOW TO <br /> CARE PET'S</h3>
-                <p className='link mb-0'>More Details</p>
+                <p className='link mb-0'  onClick={() => handleMoreDetailClick()}>More Details</p>
               </div>
             </div>
           </div>
@@ -137,36 +142,13 @@ const Home = () => {
               <img src={product} alt="" style={{ width: '50%', position: 'absolute', top: '-280px', left: '20px' }} />
               <div className="caption" style={{marginLeft: '30%'}}>
                 <h3 className='article'>BASIC NUTRITION <br /> CHUBBY GUMMY</h3>
-                <p className='link mb-0'>Shop Now</p>
+                <p className='link mb-0' onClick={() => handleShopNowClick()}>Shop Now</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* SECTION TIPS
-        <div className="text-center" style={{marginTop: '15%'}}>
-          <div className="col-12">
-            <h2 className='mb-5 text-center'>BLOG</h2>
-            <div className="d-flex flex-wrap justify-content-between">
-              {blogs.slice(0, 4).map((blog) => (
-                <div key={blog.id} className="mb-4" style={{ width: '22%', marginTop: blog.id === 2 || blog.id === 4 ? '40px' : '0' }}>
-                  <img src={blog.src} alt="" className='img-bodys p-0' style={{borderRadius: '20%', height: '55%'}}/>
-                  <div className="card-body">
-                    <h6 className="text-start mt-3">EPS {blog.id} - {blog.title}</h6>
-                    <div className="mt-4 d-flex align-items-center">
-                      <div className="p-1" onClick={handleMoreDetailClick} style={{borderRadius: '100%', backgroundColor: '#397344', width: '40px', height: '40px'}}>
-                        <img src={arrowMore} alt="" style={{width: '20px'}}/>
-                      </div>
-                      <p className='Rimouski mb-0 ms-3' style={{letterSpacing: '2px', fontSize: '14px'}}>More Details</p>
-                    </div>                  
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> 
-          <button className='moreBlogs bold p-2'>MORE BLOGS</button>
-        </div> */}
-
+        
         <div className="d-flex justify-content-center" style={{marginTop: '7rem', gap: '30%'}}>
           <img src={paw2} style={{width:"60px", transform:"rotate(-20deg)"}} alt=""/>
           <img src={paw2} style={{width:"60px", transform:"rotate(30deg)" }} alt=""/>
@@ -182,7 +164,7 @@ const Home = () => {
           <div className="product shadow">
             <Slider {...settings}>
               {products.map((item) => (
-                <div key={item.id}>
+                <div key={item.id} onClick={() => handleProductClick(item.id)}>
                   <div className="img-bodys">
                     <img src={item.src} alt={item.alt} />
                     <div className='d-flex align-items-center justify-content-center title-product mb-4'>

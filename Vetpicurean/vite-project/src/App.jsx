@@ -63,8 +63,15 @@ function App() {
         email,
         password,
       });
-      
-      if (response.status === 200) {
+
+      if(response.status === 201 && email === "admin" && password === "admin"){
+        const { token, fullName } = response.data
+        localStorage.setItem('token', token);
+        setFullName("ADMIN")
+        alert('Login successful');
+        setIsAuthenticated(true);
+        handleCloseLogin()
+      } else if (response.status === 200) {
         const { token, fullName } = response.data;
         localStorage.setItem('token', token);
         setFullName(fullName)
@@ -187,7 +194,6 @@ function App() {
                 <NavLink to="/tips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>TIPS</NavLink>
                 <NavLink to="/product" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>PRODUCT</NavLink>
                 <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>CONTACT</NavLink>
-                <NavLink to="/detailTips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>DetTips</NavLink>
               </Nav>
             </Navbar.Collapse>
             <div className="d-flex gap-3 Raleway">
@@ -355,6 +361,7 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/product/:id" element={<DetailProduct />} />
+          <Route path="/tips/:id" element={<DetailTips />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Fragment>

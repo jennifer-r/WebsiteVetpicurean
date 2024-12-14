@@ -188,19 +188,19 @@ h6 {
   letter-spacing: 1.5px;
 }
 
-ul {
+.listPaw ul {
   list-style: none;
   padding-left: 0;
   align-self: center;
 }
 
-ul li {
+.listPaw ul li {
   position: relative; 
   padding-left: 50px; 
   margin-bottom: 10px;
 }
 
-ul li::before {
+.listPaw ul li::before {
   content: '';
   background-image: url('./assets/paw2.png');
   background-size: 30px 30px;
@@ -489,6 +489,14 @@ ul li::before {
   width: 500px;
 }
 
+.addArticle {
+  border: #B1E697;
+  border-width: 2px;
+  border-radius: 30px;
+  border-style: solid;
+  padding: 50px 60px;
+}
+
 .send {
   background-color: #397344;
   width: 100%;
@@ -498,6 +506,21 @@ ul li::before {
   border: none;
   color: white;
   font-weight: bold;
+}
+
+.add {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 30px;
+  border-color: #B1E697;
+  border-width: 2px;
+  background-color: white;
+  color: #397344;
+  letter-spacing: 5px;
+  font-weight: bold;
+  border-style: solid;
+
 }
 
 .modal-title h3 {
@@ -560,25 +583,16 @@ ul li::before {
   font-family: 'Hind Siliguri', cursive;
   color: #000000;
   line-height: 1.6;
-  width: auto;
 }
 
 .titleTips  {
   font-size: 50px;
   color: #448250;
-  font-weight: 900;
+  font-weight: bold;
   margin-top: 30px;
   letter-spacing: -1px;
   text-align: center;
-  margin-left: 200px;
-  margin-right: 200px;
-}
-
-.banner {
-  text-align: center;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .boneTips {
@@ -588,27 +602,17 @@ ul li::before {
 }
 
 .contentTips {
-  padding: 100px;
-}
-
-.contentTips p {
-  margin-bottom: 20px;
-}
-
-.contentTips ol {
-  margin-left: 20px;
-}
-
-.contentTips li {
-  margin-bottom: 20px;
+  padding: 50px;
+  text-align: justify;
+  font-size: 20px;
 }
 
 .first-letter {
-  font-size: 3em; 
+  font-size: 5rem; 
   font-weight: bold; 
   float: left; 
-  line-height: 0.1; 
-  margin-right: 0.01em; 
+  line-height: 1.2; 
+  margin-right: 10px;
   color: #397344; 
 }
 
