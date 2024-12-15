@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import '../App.css'
 
 import testi from '../components/testi';
-import blogs from '../components/blog';
+// import blogs from '../components/blog';
 
 import arrow from '../assets/arrow.png'
 import paw1 from '../assets/paw1.png'
@@ -22,24 +22,38 @@ import loc from '../assets/loc.png'
 import email from '../assets/email.png'
 import tipspic from '../assets/pictips.png'
 import { useEffect, useState } from 'react';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const Tips = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false)
   const [user, setUser] = useState(null)
   useEffect(() => {
-    const fetchUserData = async () => {
-      try{
-        const response = await axios.get('/api/login')
+    // const fetchUserData = async () => {
+    //   try{
+    //     const response = await axios.get('/api/login')
+    //     setUser({
+    //       fullName: response.data.fullName,
+    //       role: response.data.role
+    //     })
+    //   } catch (err) {
+    //     console.error('Error fetching user data:', err)
+    //   }
+    // }
+    // fetchUserData()
+    const storedFullName = localStorage.getItem("fullName");
+    if(storedFullName){
+      if (storedFullName == "ADMIN"){
         setUser({
-          fullName: response.data.fullName,
-          role: response.data.role
+          fullName: storedFullName,
+          role: 'admin'
         })
-      } catch (err) {
-        console.error('Error fetching user data:', err)
       }
     }
-    fetchUserData()
+    fetchBlogs();
   }, [])
   
   const [formData, setFormData] = useState({
@@ -47,6 +61,18 @@ const Tips = () => {
     description: '',
     file: null
   })
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/articles');
+      setBlogs(response.data);
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching blogs:', err);
+      setError('Failed to load blogs');
+      setLoading(false);
+    }
+  };
 
   const settingss = {
     dots: true,            
@@ -83,15 +109,18 @@ const Tips = () => {
     setShowForm(!showForm)
   }
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData()
     data.append('title', formData.title);
     data.append('description', formData.description);
     data.append('file', formData.file)
-
+    console.log(apiUrl)
     try{
-      const response = await axios.post('/api/articles', data, {
+      const response = await axios.post(`http://localhost:5000/api/articles`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -129,20 +158,31 @@ const Tips = () => {
 
         <div className="tips d-flex flex-column align-items-center">
           {blogs.map((blog) => (
-            <Card key={blog.id} className='mb-5 cards' onClick={() => handleTipsClick(blog.id)}>
-              <div className="row g-0">
-                <div className="col-md-3">
-                  <img src={tipspic} alt="" className="img-fluid rounded-start ms-5"/>
-                </div>
-                <div className="col-md-9">
-                  <div className="card-body pt-5 pb-5 pe-5">
-                    <h3 style={{textTransform: 'uppercase'}}>{blog.title}</h3>
-                    <p className="mt-4">{blog.description1}</p>
-                  </div>
+          <Card key={blog._id} className='mb-5 cards' onClick={() => handleTipsClick(blog._id)}>
+            <div className="row g-0">
+              <div className="col-md-3">
+                <img 
+                  src={blog.imageUrl ? `http://localhost:5000/${blog.imageUrl}` : tipspic} 
+                  alt={blog.title}
+                  className="img-fluid rounded-start ms-5"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = tipspic; // Fallback image
+                  }}
+                />
+              </div>
+              <div className="col-md-9">
+                <div className="card-body pt-5 pb-5 pe-5">
+                  <h3 style={{textTransform: 'uppercase'}}>{blog.title}</h3>
+                  <p className="mt-4">{blog.description}</p>
+                  <small className="text-muted">
+                    {new Date(blog.createdAt).toLocaleDateString()}
+                  </small>
                 </div>
               </div>
-            </Card>
-          ))}
+            </div>
+          </Card>
+        ))}
         </div>
         
         {/* ADD ARTIKEL */}
@@ -158,7 +198,7 @@ const Tips = () => {
           <form encType='multipart/form-data' onSubmit={handleSubmit}>
             <div className="titles">
               <div className="d-flex align-items-center">
-                <label htmlFor="exampleInputTitle">TTITLE</label>
+                <label htmlFor="exampleInputTitle">TITLE</label>
                 <img src={paw2} alt="" className='paww ms-3' style={{width: '30px', height: '30px'}}/>
               </div>
               <input type="text" className="form-control mt-3" id="exampleInputTitle" aria-describedby="titleHelp" name='title' value={formData.title} onChange={handleInputChange}/>

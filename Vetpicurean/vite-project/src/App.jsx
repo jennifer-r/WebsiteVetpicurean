@@ -1,51 +1,67 @@
-import { Fragment, useState } from 'react'
-import { Dropdown, Container, Nav, Navbar, Modal } from 'react-bootstrap'
-import { Route, Routes, NavLink } from 'react-router-dom';
-import axios from 'axios'
-import './App.css'
+import { Fragment, useState, useEffect } from "react";
+import { Dropdown, Container, Nav, Navbar, Modal } from "react-bootstrap";
+import { Route, Routes, NavLink } from "react-router-dom";
+import axios from "axios";
+import "./App.css";
 
-import Home from './pages/Home'
-import About from './pages/About'
-import Tips from './pages/Tips'
-import Product from './pages/Product'
-import Contact from './pages/Contact'
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Tips from "./pages/Tips";
+import Product from "./pages/Product";
+import Contact from "./pages/Contact";
 // TAMBAHAN
-import DetailProduct from './pages/DetailProduct'
+import DetailProduct from "./pages/DetailProduct";
 // import DetailProduct from './pages/DetailProduct'
-import DetailTips from './pages/DetailTips'
+import DetailTips from "./pages/DetailTips";
 
 import { ButtonPrimary, ButtonSecondary } from "./components/Button";
 
-import logo from './assets/vetpic.png'
+import logo from "./assets/vetpic.png";
 
 function App() {
-  const [showLogin, setShowLogin] = useState(false)
-  const [showRegis, setShowRegis] = useState(false)
-  const [showBio, setShowBio] = useState(false)
-  const [selectedPets, setSelectedPets] = useState([])
-  const [selectedOption, setSelectedOption] = useState(null)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [fullName, setFullName] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [gender, setGender] = useState('')
-  const [numberOfPets, setNumberOfPets] = useState('')
-  const [expense, setExpense] = useState('')
-  const [petDescription, setPetDescription] = useState('')
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegis, setShowRegis] = useState(false);
+  const [showBio, setShowBio] = useState(false);
+  const [selectedPets, setSelectedPets] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [gender, setGender] = useState("");
+  const [numberOfPets, setNumberOfPets] = useState("");
+  const [expense, setExpense] = useState("");
+  const [petDescription, setPetDescription] = useState("");
 
-  const handleCloseLogin = () => setShowLogin(false)
-  const handleShowLogin = () => setShowLogin(true)
-  const handleCloseRegis = () => setShowRegis(false)
-  const handleShowRegis = () => setShowRegis(true)
+  //Read token from local storage to check if user is already authenticated
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedFullName = localStorage.getItem("fullName");
+
+    if (token) {
+      if (storedFullName === "ADMIN") {
+        setIsAuthenticated(true);
+        setFullName("ADMIN");
+      } else if (storedFullName) {
+        setIsAuthenticated(true);
+        setFullName(storedFullName);
+      }
+    }
+  }, []);
+
+  const handleCloseLogin = () => setShowLogin(false);
+  const handleShowLogin = () => setShowLogin(true);
+  const handleCloseRegis = () => setShowRegis(false);
+  const handleShowRegis = () => setShowRegis(true);
   const handleShowBio = () => {
     setShowRegis(false);
-    setShowBio(true)
-  }
-  const handleCloseBio = () => setShowBio(false)
+    setShowBio(true);
+  };
+  const handleCloseBio = () => setShowBio(false);
 
   const handleTogglePetSelection = (pet) => {
-    setSelectedPets((prevSelectedPets) => 
+    setSelectedPets((prevSelectedPets) =>
       prevSelectedPets.includes(pet)
         ? prevSelectedPets.filter((item) => item !== pet)
         : [...prevSelectedPets, pet]
@@ -54,158 +70,232 @@ function App() {
 
   const handleLogin = async () => {
     if (!email || !password) {
-      alert('Please fill out all fields');
+      alert("Please fill out all fields");
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/login', {
+      const response = await axios.post("http://localhost:5000/api/login", {
         email,
         password,
       });
 
-      if(response.status === 201 && email === "admin" && password === "admin"){
-        const { token, fullName } = response.data
-        localStorage.setItem('token', token);
-        setFullName("ADMIN")
-        alert('Login successful');
+      if (
+        response.status === 201 &&
+        email === "admin" &&
+        password === "admin"
+      ) {
+        const { token } = response.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("fullName", "ADMIN"); // Store admin name
+        setFullName("ADMIN");
+        alert("Login successful");
         setIsAuthenticated(true);
-        handleCloseLogin()
+        handleCloseLogin();
       } else if (response.status === 200) {
         const { token, fullName } = response.data;
-        localStorage.setItem('token', token);
-        setFullName(fullName)
-        alert('Login successful');
+        localStorage.setItem("token", token);
+        localStorage.setItem("fullName", fullName); // Store user's name
+        setFullName(fullName);
+        alert("Login successful");
         setIsAuthenticated(true);
-        handleCloseLogin()
+        handleCloseLogin();
       }
+
+      window.location.reload();
     } catch (err) {
-        console.error('Login failed', err);
-        if (err.response && err.response.status === 400) {
-          alert(err.response.data.message);
-        } else {
-          alert('Login failed');
-        }
-    }
-  }
-
-  const handleRegister = async () => {
-    if (!fullName || !email|| !password || !confirmPassword) {
-      alert('Please fill out all fields');
-      return;
-    }
-
-    if(password !== confirmPassword){
-      alert('Passwords do not match')
-      return;
-    }
-
-    try{
-      const response = await axios.post('http://localhost:5000/api/register', {
-        fullName,
-        email,
-        password,
-        confirmPassword
-      });
-      
-      if (response.status === 201) {
-        alert('Registration successful');
-        const { userId } = response.data;
-        localStorage.setItem('userId', userId)
-        handleCloseRegis()
-        handleShowBio()
-      }
-    }catch (err) {
-      console.error('Registration failed: ', err);
+      console.error("Login failed", err);
       if (err.response && err.response.status === 400) {
         alert(err.response.data.message);
       } else {
-        alert('Registration failed');
+        alert("Login failed");
       }
     }
-  }
+  };
 
-  const handleSaveBio = async () => {
-    const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("fullName"); // Remove stored name
+    setIsAuthenticated(false);
+    setFullName("");
+    alert("You have logged out successfully");
+    window.location.reload();
+  };
 
-    if (!userId || selectedPets.length === 0 || !gender || !numberOfPets || !selectedOption || !expense) {
-      alert('Please fill out all fields');
+  const handleRegister = async () => {
+    if (!fullName || !email || !password || !confirmPassword) {
+      alert("Please fill out all fields");
       return;
     }
 
-    console.log('Data being sent:', {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/register", {
+        fullName,
+        email,
+        password,
+        confirmPassword,
+      });
+
+      if (response.status === 201) {
+        alert("Registration successful");
+        const { userId } = response.data;
+        localStorage.setItem("userId", userId);
+        handleCloseRegis();
+        handleShowBio();
+      }
+    } catch (err) {
+      console.error("Registration failed: ", err);
+      if (err.response && err.response.status === 400) {
+        alert(err.response.data.message);
+      } else {
+        alert("Registration failed");
+      }
+    }
+  };
+
+  const handleSaveBio = async () => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    if (
+      !userId ||
+      selectedPets.length === 0 ||
+      !gender ||
+      !numberOfPets ||
+      !selectedOption ||
+      !expense
+    ) {
+      alert("Please fill out all fields");
+      return;
+    }
+
+    console.log("Data being sent:", {
       userId,
       petType: selectedPets,
       gender,
       numberOfPets,
       age: selectedOption,
-      expense
+      expense,
     });
 
-    try{
-      const response = await axios.post('http://localhost:5000/api/petbio', {
-        userId,
-        petType: selectedPets,
-        gender,
-        numberOfPets,
-        age: selectedOption,
-        expense,
-        petDescription
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/petbio",
+        {
+          userId,
+          petType: selectedPets,
+          gender,
+          numberOfPets,
+          age: selectedOption,
+          expense,
+          petDescription,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
-      
+      );
+
       if (response.status === 201) {
-        alert('Pet biodata saved successful')
-        handleCloseBio()
-        handleShowLogin()
+        alert("Pet biodata saved successful");
+        handleCloseBio();
+        handleShowLogin();
       }
-    }catch (err) {
-      console.error('Failed to save pet biodata: ', err);
+    } catch (err) {
+      console.error("Failed to save pet biodata: ", err);
       if (err.response) {
         alert(`Error: ${err.response.data.message}`);
       } else {
-        alert('Failed to save pet biodata');
-      }    }
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    setIsAuthenticated(false)
-    setFullName('')
-    alert('Yout have logged out successfully')
-  }
+        alert("Failed to save pet biodata");
+      }
+    }
+  };
 
   return (
     <>
       <Fragment>
         {/* NAVBAR */}
         <Navbar expand="lg">
-          <Container fluid style={{padding: '10px 100px'}}>
+          <Container fluid style={{ padding: "10px 100px" }}>
             <img src={logo} alt="" style={{ width: "15%" }} />
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto d-flex flex-row align-items-center Rimouski" style={{ maxHeight: '100px', fontWeight: '500' }}>
-                <NavLink to="/home" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>HOME</NavLink>
-                <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>ABOUT</NavLink>
-                <NavLink to="/tips" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>TIPS</NavLink>
-                <NavLink to="/product" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>PRODUCT</NavLink>
-                <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>CONTACT</NavLink>
+              <Nav
+                className="me-auto d-flex flex-row align-items-center Rimouski"
+                style={{ maxHeight: "100px", fontWeight: "500" }}
+              >
+                <NavLink
+                  to="/home"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  HOME
+                </NavLink>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  ABOUT
+                </NavLink>
+                <NavLink
+                  to="/tips"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  TIPS
+                </NavLink>
+                <NavLink
+                  to="/product"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  PRODUCT
+                </NavLink>
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  CONTACT
+                </NavLink>
+                {/* {fullName === "ADMIN" && (
+                  <NavLink
+                    to="/addTips"
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                  >
+                    ADD TIPS
+                  </NavLink>
+                )} */}
               </Nav>
             </Navbar.Collapse>
             <div className="d-flex gap-3 Raleway">
               {isAuthenticated ? (
                 <>
-                  <span className='navbar-text'>Hello, {fullName} !</span>
-                  <ButtonSecondary onClick={handleLogout}>LOGOUT</ButtonSecondary>
+                  <span className="navbar-text">Hello, {fullName} !</span>
+                  <ButtonSecondary onClick={handleLogout}>
+                    LOGOUT
+                  </ButtonSecondary>
                 </>
               ) : (
                 <>
                   <ButtonPrimary onClick={handleShowLogin}>LOGIN</ButtonPrimary>
-                  <ButtonSecondary onClick={handleShowRegis}>REGISTER</ButtonSecondary>
+                  <ButtonSecondary onClick={handleShowRegis}>
+                    REGISTER
+                  </ButtonSecondary>
                 </>
               )}
             </div>
@@ -214,125 +304,249 @@ function App() {
 
         <Modal show={showLogin} onHide={handleCloseLogin} centered>
           <Modal.Header closeButton />
-          <Modal.Body className='modals' style={{textAlign: 'center'}}>
+          <Modal.Body className="modals" style={{ textAlign: "center" }}>
             <div className="modal-title">
-              <h3 style={{textTransform: 'uppercase', textAlign: 'center'}}>Welcome Back <br /> Login</h3>
+              <h3 style={{ textTransform: "uppercase", textAlign: "center" }}>
+                Welcome Back <br /> Login
+              </h3>
               <p></p>
             </div>
-            <div className='titles p-5' style={{textAlign: 'left'}}>
+            <div className="titles p-5" style={{ textAlign: "left" }}>
               <label>Email</label>
-              <input type="text" className="form-control mt-3" placeholder='name@example.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <input
+                type="text"
+                className="form-control mt-3"
+                placeholder="name@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
 
-              <label className='mt-4'>Password</label>
-              <input type="text" className="form-control mt-3" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <label className="mt-4">Password</label>
+              <input
+                type="text"
+                className="form-control mt-3"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
 
-            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleLogin}>LOGIN</button>
+            <button
+              className="send mt-4 mb-4"
+              style={{ width: "80%", justifyContent: "center" }}
+              onClick={handleLogin}
+            >
+              LOGIN
+            </button>
           </Modal.Body>
         </Modal>
 
         <Modal show={showRegis} onHide={handleCloseRegis} centered>
           <Modal.Header closeButton />
-          <Modal.Body className='modals' style={{textAlign: 'center'}}>
+          <Modal.Body className="modals" style={{ textAlign: "center" }}>
             <div className="modal-title">
-              <h3 style={{textTransform: 'uppercase', textAlign: 'center', marginBottom:0}}>Register</h3>
-              <p style={{color:'gray'}}>Make account for gets more information</p>
+              <h3
+                style={{
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  marginBottom: 0,
+                }}
+              >
+                Register
+              </h3>
+              <p style={{ color: "gray" }}>
+                Make account for gets more information
+              </p>
             </div>
-            <div className='titles p-5' style={{textAlign: 'left'}}>
+            <div className="titles p-5" style={{ textAlign: "left" }}>
               <label>Full Name</label>
-              <input type="text" className="form-control mt-3" placeholder='Full Name' value={fullName} onChange={(e) => setFullName(e.target.value)}/>
+              <input
+                type="text"
+                className="form-control mt-3"
+                placeholder="Full Name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+              />
 
-              <label className='mt-4'>Email</label>
-              <input type="text" className="form-control mt-3" placeholder='name@example.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <label className="mt-4">Email</label>
+              <input
+                type="text"
+                className="form-control mt-3"
+                placeholder="name@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
 
-              <label className='mt-4'>Password</label>
-              <input type="text" className="form-control mt-3" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-              
-              <label className='mt-4'>Confirm Password</label>
-              <input type="text" className="form-control mt-3" placeholder='Confirm Password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+              <label className="mt-4">Password</label>
+              <input
+                type="text"
+                className="form-control mt-3"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+
+              <label className="mt-4">Confirm Password</label>
+              <input
+                type="text"
+                className="form-control mt-3"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
             </div>
 
-            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleRegister} >Continue</button>
+            <button
+              className="send mt-4 mb-4"
+              style={{ width: "80%", justifyContent: "center" }}
+              onClick={handleRegister}
+            >
+              Continue
+            </button>
           </Modal.Body>
         </Modal>
 
-        <Modal show={showBio} onHide={handleCloseBio} size='lg' centered>
+        <Modal show={showBio} onHide={handleCloseBio} size="lg" centered>
           <Modal.Header closeButton />
-          <Modal.Body className='modals' style={{textAlign: 'center'}}>
+          <Modal.Body className="modals" style={{ textAlign: "center" }}>
             <div className="modal-title">
-              <h3 style={{textTransform: 'uppercase', textAlign: 'center', marginBottom:0}}>OPEN UP !</h3>
-              <p style={{color:'gray'}}>Tell us more about you</p>
-            </div>
-            <div className='titles p-5' style={{textAlign: 'left'}}>
-              <label>Siapa aja Teman Setia Kamu</label>
-              <div className="d-flex gap-4 mt-3 justify-content-between">
-              {['DOG', 'CAT', 'RABBIT', 'OTHER'].map((pet) => (
-              <ButtonPrimary
-                key={pet}
-                onClick={() => handleTogglePetSelection(pet)}
+              <h3
                 style={{
-                  backgroundColor: selectedPets.includes(pet) ? '#6BF584' : '#FFFFFF',
-                  color: selectedPets.includes(pet) ? '#FFFFFF' : '#6BF584',
-                  borderColor: '#6BF584',
-                  width: '100px', // Width untuk setiap button
-                  textAlign: 'center'
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  marginBottom: 0,
                 }}
               >
-                {pet}
-              </ButtonPrimary>
-              ))}
+                OPEN UP !
+              </h3>
+              <p style={{ color: "gray" }}>Tell us more about you</p>
+            </div>
+            <div className="titles p-5" style={{ textAlign: "left" }}>
+              <label>Siapa aja Teman Setia Kamu</label>
+              <div className="d-flex gap-4 mt-3 justify-content-between">
+                {["DOG", "CAT", "RABBIT", "OTHER"].map((pet) => (
+                  <ButtonPrimary
+                    key={pet}
+                    onClick={() => handleTogglePetSelection(pet)}
+                    style={{
+                      backgroundColor: selectedPets.includes(pet)
+                        ? "#6BF584"
+                        : "#FFFFFF",
+                      color: selectedPets.includes(pet) ? "#FFFFFF" : "#6BF584",
+                      borderColor: "#6BF584",
+                      width: "100px", // Width untuk setiap button
+                      textAlign: "center",
+                    }}
+                  >
+                    {pet}
+                  </ButtonPrimary>
+                ))}
               </div>
 
-              <label className='mt-4'>Paling banyak gender apa sih</label>
+              <label className="mt-4">Paling banyak gender apa sih</label>
               <div className="d-flex mt-3">
-                <div className="form-check Raleway" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="maleRadio" name="gender" value="Male" checked={gender === 'Male'} onChange={(e) => setGender(e.target.value)}/>Male
+                <div className="form-check Raleway" style={{ color: "gray" }}>
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    id="maleRadio"
+                    name="gender"
+                    value="Male"
+                    checked={gender === "Male"}
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                  Male
                   <label className="form-check-label me-5"></label>
                 </div>
-                <div className="form-check Raleway" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="femaleRadio" name="gender" value="Female" checked={gender === 'Female'} onChange={(e) => setGender(e.target.value)}/>Female
+                <div className="form-check Raleway" style={{ color: "gray" }}>
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    id="femaleRadio"
+                    name="gender"
+                    value="Female"
+                    checked={gender === "Female"}
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                  Female
                   <label className="form-check-label"></label>
                 </div>
               </div>
 
-
-              <label className='mt-4'>Jumlah Anabul Kamu</label>
+              <label className="mt-4">Jumlah Anabul Kamu</label>
               <div className="d-flex mt-3">
-                <div className="form-check Raleway" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="lesThan3Pets" name="numberOfPets" value="< 3"  checked={numberOfPets === '< 3'} onChange={(e) => setNumberOfPets(e.target.value)}/> less than 3 pets
+                <div className="form-check Raleway" style={{ color: "gray" }}>
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    id="lesThan3Pets"
+                    name="numberOfPets"
+                    value="< 3"
+                    checked={numberOfPets === "< 3"}
+                    onChange={(e) => setNumberOfPets(e.target.value)}
+                  />{" "}
+                  less than 3 pets
                   <label className="form-check-label"></label>
                 </div>
-                <div className="form-check Raleway me-5 ms-5" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="threeToSevenPets" name="numberOfPets" value="3 - 7"  checked={numberOfPets === '3 - 7'} onChange={(e) => setNumberOfPets(e.target.value)}/>3 - 7 pets
+                <div
+                  className="form-check Raleway me-5 ms-5"
+                  style={{ color: "gray" }}
+                >
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    id="threeToSevenPets"
+                    name="numberOfPets"
+                    value="3 - 7"
+                    checked={numberOfPets === "3 - 7"}
+                    onChange={(e) => setNumberOfPets(e.target.value)}
+                  />
+                  3 - 7 pets
                   <label className="form-check-label"></label>
                 </div>
-                <div className="form-check Raleway" style={{color: 'gray'}}>
-                  <input type="radio" className="form-check-input" id="moreThanSevenPets" name="numberOfPets" value="> 7" checked={numberOfPets === '> 7'} onChange={(e) => setNumberOfPets(e.target.value)}/>&gt; 7 pets
+                <div className="form-check Raleway" style={{ color: "gray" }}>
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    id="moreThanSevenPets"
+                    name="numberOfPets"
+                    value="> 7"
+                    checked={numberOfPets === "> 7"}
+                    onChange={(e) => setNumberOfPets(e.target.value)}
+                  />
+                  &gt; 7 pets
                   <label className="form-check-label"></label>
                 </div>
               </div>
 
-              <label className='mt-4'>Umur anabul kamu paling senior</label>
+              <label className="mt-4">Umur anabul kamu paling senior</label>
               <Dropdown className="mt-3 w-100">
                 <Dropdown.Toggle
                   className="choose Raleway"
                   style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    backgroundColor: 'transparent',
-                    borderColor: '#CED4DA',
-                    color: '#495057',
-                    padding: '8px',
-                    display: 'block',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
+                    width: "100%",
+                    textAlign: "left",
+                    backgroundColor: "transparent",
+                    borderColor: "#CED4DA",
+                    color: "#495057",
+                    padding: "8px",
+                    display: "block",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                   }}
                 >
-                  {selectedOption || 'Choose One'}
+                  {selectedOption || "Choose One"}
                 </Dropdown.Toggle>
-                <Dropdown.Menu style={{ width: '100%' }}>
-                  {['13 - 17 tahun', '18 - 24 tahun', '25 - 34 tahun', '35 - 44 tahun', '45 - 54 tahun', '> 65 tahun'].map((age) => (
+                <Dropdown.Menu style={{ width: "100%" }}>
+                  {[
+                    "13 - 17 tahun",
+                    "18 - 24 tahun",
+                    "25 - 34 tahun",
+                    "35 - 44 tahun",
+                    "45 - 54 tahun",
+                    "> 65 tahun",
+                  ].map((age) => (
                     <Dropdown.Item
                       key={age}
                       onClick={() => setSelectedOption(age)}
@@ -342,15 +556,37 @@ function App() {
                   ))}
                 </Dropdown.Menu>
               </Dropdown>
-              
-              <label className='mt-4'>Berapa banyak sih kebutuhan anabul dalam sebulan</label>
-              <input type="text" className="form-control mt-3" placeholder='Expense (Monthly)' value={expense} onChange={(e) => setExpense(e.target.value)}/>
 
-              <label className='mt-4'>Sekilas tentang hewan kesayangan kamu</label>
-              <textarea className='form-control mt-3' placeholder='Tell about your pet...' value={petDescription} onChange={(e) => setPetDescription(e.target.value)} style={{height: '150px'}}></textarea>
+              <label className="mt-4">
+                Berapa banyak sih kebutuhan anabul dalam sebulan
+              </label>
+              <input
+                type="text"
+                className="form-control mt-3"
+                placeholder="Expense (Monthly)"
+                value={expense}
+                onChange={(e) => setExpense(e.target.value)}
+              />
+
+              <label className="mt-4">
+                Sekilas tentang hewan kesayangan kamu
+              </label>
+              <textarea
+                className="form-control mt-3"
+                placeholder="Tell about your pet..."
+                value={petDescription}
+                onChange={(e) => setPetDescription(e.target.value)}
+                style={{ height: "150px" }}
+              ></textarea>
             </div>
 
-            <button className='send mt-4 mb-4' style={{width:'80%', justifyContent: 'center'}} onClick={handleSaveBio}>JOIN CHUBBY GUMMY GANK</button>
+            <button
+              className="send mt-4 mb-4"
+              style={{ width: "80%", justifyContent: "center" }}
+              onClick={handleSaveBio}
+            >
+              JOIN CHUBBY GUMMY GANK
+            </button>
           </Modal.Body>
         </Modal>
 
@@ -366,7 +602,7 @@ function App() {
         </Routes>
       </Fragment>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

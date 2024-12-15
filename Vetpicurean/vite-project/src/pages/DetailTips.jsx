@@ -1,27 +1,46 @@
-import {useEffect, useState} from 'react';
-import '../App.css'
+import { useEffect, useState } from 'react';
+import '../App.css';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-import blogs from '../components/blog'
-
-import paw2 from '../assets/paw2.png'
-import logo from '../assets/vetpic.png'
-import tel from '../assets/telephone.png'
-import loc from '../assets/loc.png'
-import email from '../assets/email.png'
+import paw2 from '../assets/paw2.png';
+import logo from '../assets/vetpic.png';
+import tel from '../assets/telephone.png';
+import loc from '../assets/loc.png';
+import email from '../assets/email.png';
 
 const DetailTips = () => {
-
-    const { id } = useParams()
+    const { id } = useParams();
     const [currentBlog, setCurrentBlog] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const blog = blogs.find(p => p.id == parseInt(id))
-        setCurrentBlog(blog)
-    }, [id])
+        fetchBlogDetail();
+    }, [id]);
+
+    const fetchBlogDetail = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/api/articles/${id}`);
+            setCurrentBlog(response.data);
+            setLoading(false);
+        } catch (err) {
+            console.error('Error fetching blog detail:', err);
+            setError('Failed to load blog details');
+            setLoading(false);
+        }
+    };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     if (!currentBlog) {
-        return <div>Loading...</div>
+        return <div>Blog not found</div>;
     }
 
     return (
@@ -31,14 +50,22 @@ const DetailTips = () => {
                     <div className="card border-0">
                         <div className="d-flex align-items-center justify-content-center">
                             <img src={paw2} alt="" style={{width: '10%', height: '10%', marginRight: '100px', transform: 'rotate(-20deg)'}}/>
-                            <img src={currentBlog.src} className="card-img" style={{width: '30%', height: '30%', objectFit: 'cover', borderRadius: '20px'}}/>
+                            <img 
+                                src={currentBlog.imageUrl ? `http://localhost:5000/${currentBlog.imageUrl}` : currentBlog.src} 
+                                className="card-img" 
+                                style={{width: '30%', height: '30%', objectFit: 'cover', borderRadius: '20px'}}
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = currentBlog.src; // Fallback to default image
+                                }}
+                            />
                             <img src={paw2} alt="" style={{width: '10%', height: '10%', marginLeft: '100px', transform: 'rotate(20deg)'}}/>
                         </div>
                         <h5 className="titleTips">{currentBlog.title}</h5>
                     </div>
                     <div className="contentTips Raleway">
-                        <span className="first-letter">{currentBlog.description1.charAt(0)}</span>
-                        {currentBlog.description1.slice(1)}{currentBlog.description2}
+                        <span className="first-letter">{currentBlog.description.charAt(0)}</span>
+                        {currentBlog.description.slice(1)}
                     </div>                   
                 </div>
                 {/* FOOTER */}
@@ -73,7 +100,7 @@ const DetailTips = () => {
                             <div className="d-flex mt-4">
                                 <input type="text" className="form-control position-relative Hind" placeholder='E-mail'/>
                                 <button className='btn-paw position-absolute' style={{borderRadius: '50%'}}>
-                                <img src={paw2} alt="" className='sub-paw'/>
+                                    <img src={paw2} alt="" className='sub-paw'/>
                                 </button>
                             </div> 
                             <p className='mt-4 Rimouski'>Subscribe to more information</p>          
@@ -86,9 +113,6 @@ const DetailTips = () => {
                 </div>
             </div>
         </div>
-
-        
-
     );
 };
 
